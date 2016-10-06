@@ -1,0 +1,7 @@
+#START
+PassengerEnabled On
+PassengerLoadShellEnvVars On
+PassengerAppRoot /home/monkeybu/git/s13.git
+PassengerRuby /usr/bin/ruby
+RackEnv development
+#END

@@ -1,0 +1,38 @@
+<h1>Listing territories</h1>
+
+<% form_tag territories_path, :method => 'get' do %>
+	<%= hidden_field_tag :direction, params[:direction] %>
+	<%= hidden_field_tag :sort, params[:sort] %>
+	<p>
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag "Search", :name => nil %>
+	</p>
+<% end %>
+<table class="pretty">
+  <tr>
+    <th><%= sortable "territory_type_id", "Type" %></th>
+    <th><%= sortable "name" %></th>
+    <th><%= sortable "description" %></th>
+    <th><%= sortable "map" %></th>
+    <th><%= sortable "notes" %></th>
+  </tr>
+
+<% @territories.each do |territory| %>
+<% tt = @territory_types.select { |tt| tt.id == territory.territory_type_id.to_i } %>
+  <tr>
+    <td><%=h tt[0].name.titleize %></td>
+    <td><%=h link_to "#{territory.name}", edit_territory_path(territory) %></td>
+    <td><%=h territory.description %></td>
+    <td><%=h territory.map %></td>
+    <td><%=h territory.notes %></td>
+    <!--<td style="border: 0"><div id="button_green"><%= link_to 'Show', territory %></div></td>-->
+    <!--<td style="border: 0"><div id="button_green"><%= link_to 'Edit', edit_territory_path(territory) %></td>-->
+    <!--<td style="border: 0"><div id="button_red"><%= link_to 'Delete', territory, :confirm => 'Are you sure?', :method => :delete %></td>-->
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @territories %>
+
+<br />
+
+<%= link_to 'New territory', new_territory_path %>

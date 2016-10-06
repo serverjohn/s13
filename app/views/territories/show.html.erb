@@ -1,0 +1,28 @@
+<p>
+  <b>Type:</b>
+  <%=h @territory.type %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @territory.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @territory.description %>
+</p>
+
+<p>
+  <b>Map:</b>
+  <%=h @territory.map %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @territory.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_territory_path(@territory) %> |
+<%= link_to 'Back', territories_path %>

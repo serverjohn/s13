@@ -1,0 +1,104 @@
+<p>
+  <b>First name:</b>
+  <%=h @publisher.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%=h @publisher.last_name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @publisher.email %>
+</p>
+
+<p>
+  <b>Phone Number:</b>
+  <%=h @publisher.phone_number %>
+</p>
+
+<p>
+  <b>Accepts Text Messages:</b>
+  <%=h @publisher.textmessage == "1" ? 'Yes' : 'No' %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @publisher.notes %>
+</p>
+
+<p>
+  <b>Territories Checked Out: </b>
+</p>
+<table>
+<tr>
+	<th>
+	<b>Territory</b>
+	</th>
+	<th>
+	<b>Checked Out</b>
+	</th>
+	<th>
+	<b>Age</b>
+	</th>
+</tr>
+	<% if @territories_checked_out.empty? %>
+		<tr>
+			<th>None</th>
+			<th>None</th>
+			<th>None</th>
+		</tr>		
+	<% else %>
+		<% @territories_checked_out.each do |key, hist| %>
+			<tr>
+				<th><%= hist[:territory_id] %></th>
+				<th><%= hist[:checked_out].strftime("%m-%d-%Y") %></th>
+				<th><%= "#{hist[:age]} month" %></th>
+			</tr>
+  		<% end %> 
+  	<% end %> 
+</table>
+
+<p>
+  <b>History:</b>
+</p>
+<table>
+	<% if @publisher_history.empty? %>
+		<tr>
+			<th colspan="5">None</th>
+		</tr>		
+	<% else %>	
+		<tr>
+			<th>
+			<b>Territory</b>
+			</th>
+			<th>
+			<b>Checked Out</b>
+			</th>
+			<th>
+			<b>Checked In</b>
+			</th>
+			<th>
+			<b>Age</b>
+			</th>
+			<th>
+			<b>Worked With</b>
+			</th>
+		</tr>
+		<% @publisher_history.each do |key, hist| %>
+			<tr>
+				<th><%= hist[:territory_id] %></th>
+				<th><%= hist[:checked_out].strftime("%m-%d-%Y") %></th>
+				<th><%= hist[:checked_in].strftime("%m-%d-%Y") if hist[:checked_in] %></th>
+				<th><%= "#{hist[:age]}m" %></th>
+				<th><%= hist[:worked_with] %></th>
+			</tr>
+	  	<% end %>
+  	<% end %>
+</table>
+
+<%= link_to 'Edit', edit_publisher_path(@publisher) %> |
+<%= link_to 'Back', publishers_path %>
+
+<%= puts @publisher_history %>

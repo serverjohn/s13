@@ -1,0 +1,38 @@
+<p>
+  <b>User:</b>
+  <%=h @checkout.user_id %>
+</p>
+
+<p>
+  <b>Terriory:</b>
+  <%=h @checkout.territory_id %>
+</p>
+
+<p>
+  <b>Publisher:</b>
+  <%=h @checkout.publisher_id %>
+</p>
+
+<p>
+  <b>Checked out:</b>
+  <%=h @checkout.checked_out %>
+</p>
+
+<p>
+  <b>Checked in:</b>
+  <%=h @checkout.checked_in %>
+</p>
+
+<p>
+  <b>Completed with:</b>
+  <%=h @checkout.completed_with %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @checkout.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_checkout_path(@checkout) %> |
+<%= link_to 'Back', checkouts_path %>

@@ -1,0 +1,61 @@
+<h1>Editing checkout</h1>
+
+<% form_for(@checkout) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+
+    <%= f.label :user_id, "USER Checked Out By:" %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :territory_id %><br />
+    <%= f.text_field :territory_id %>
+  </p>
+  <p>
+    <%= f.label :publisher_id %><br />
+    <%= f.text_field :publisher_id %>
+  </p>
+  <p>
+    <%= f.label :checked_out %><br />
+    <%= f.date_select :checked_out, :start_year => Time.now.year, :end_year => Time.now.year - 2, :disabled => true %>
+  </p>
+  
+  <% if @checkout.checked_in %>
+	  <p>
+	    <%= f.label :checked_in %><br />
+	    <%= f.date_select :checked_in, :start_year => Time.now.year, :end_year => Time.now.year - 2 %>
+	  </p>
+	<% else %>
+	  <p>
+	    <%= f.label :checked_in %><br />
+	    <%= f.date_select :checked_in, :start_year => Time.now.year, :end_year => Time.now.year - 2 %>
+	  </p>
+	<% end %>
+  <p>
+  	<!-- Checks if completed_with has already been set. If not default to id one regular offer -->
+	<% if @checkout.completed_with? %>
+	  	<%= f.label :completed_with %><br />
+		<% for wwt in WorkedWithType.find(:all) %>
+			  <%= f.radio_button :completed_with, wwt.id, wwt.id == @checkout.completed_with.to_i ? {:checked => true} : {:checked => false} %>
+			  <%= wwt.name.titleize %>
+		<% end %>		
+	<% else %>
+	  	<%= f.label :completed_with %><br />
+		<% for wwt in WorkedWithType.find(:all) %>
+			  <%= f.radio_button :completed_with, wwt.id, wwt.id == 1 ? {:checked => true} : {:checked => false} %>
+			  <%= wwt.name.titleize %>
+		<% end %>
+	<% end %>
+  </p>
+  <p>
+    <%= f.label :notes %><br />
+    <%= f.text_field :notes %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @checkout %> |
+<%= link_to 'Back', checkouts_path %>

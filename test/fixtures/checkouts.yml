@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  terriory_id: 1
+  publisher_id: 
+  checked_out: MyString
+  checked_in: MyString
+  completed_with: MyString
+  notes: MyString
+
+two:
+  user_id: 1
+  terriory_id: 1
+  publisher_id: 
+  checked_out: MyString
+  checked_in: MyString
+  completed_with: MyString
+  notes: MyString

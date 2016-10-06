@@ -1,0 +1,30 @@
+<% title "Sign up" %>
+
+<p>Already have an account? <%= link_to "Log in", login_path %>.</p>
+
+<% form_for @user do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :user_name %><br />
+    <%= f.text_field :user_name %>
+  </p>
+  <p>
+    <%= f.label :email, "Email Address" %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation, "Confirm Password" %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
+    <%= f.label :user_role, "User Role" %><br />
+    <%= f.select :user_role, options_for_select(['admin', 'tservant', 'checkout']) %>
+  </p>
+
+
+  <p><%= f.submit "Sign up" %></p>
+<% end %>

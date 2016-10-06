@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Territories: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'application' %>
+</head>
+<body>
+      <!-- Errors etc. territories -->
+      <!-- Errors etc. checkouts publishers users -->
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+  <div class="loginContainer">
+    <div class="right-user">
+      <% if logged_in? %>
+        <%=h current_user.username %> | <%= link_to "logout", logout_path %>
+      <% end %>
+    </div>
+    
+    <div class="login">
+    	<div class="loginLogo center">
+    		<img src="/images/s13_white.png">
+    	</div>     
+      
+      <%= yield %>
+
+    </div>
+  </div>
+
+</body>
+</html>
+</html>
