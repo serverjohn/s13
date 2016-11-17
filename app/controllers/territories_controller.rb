@@ -6,7 +6,7 @@ class TerritoriesController < ApplicationController
   # GET /territories.xml
   def index
     if params[:search]
-      @territories = Territory.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}"]).paginate(:per_page => 10, :page => params[:page])
+      @territories = Territory.where("name LIKE ?", params[:search]).paginate(:per_page => 10, :page => params[:page])
     else
       @territories = Territory.all(:order => sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
     end
@@ -36,7 +36,7 @@ class TerritoriesController < ApplicationController
     @territory = Territory.new
     
     @territory_types = []
-    territory_types = TerritoryType.all(:conditions => { "active" => "Y"})
+    territory_types = TerritoryType.where(active: "Y")
     territory_types.each do |tt|
       @territory_types << [tt.name.titleize,tt.id]
     end

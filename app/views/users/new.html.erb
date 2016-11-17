@@ -2,11 +2,11 @@
 
 <p>Already have an account? <%= link_to "Log in", login_path %>.</p>
 
-<% form_for @user do |f| %>
+<%= form_for @user do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :user_name %><br />
-    <%= f.text_field :user_name %>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
   </p>
   <p>
     <%= f.label :email, "Email Address" %><br />
@@ -22,7 +22,7 @@
   </p>
   <p>
     <%= f.label :user_role, "User Role" %><br />
-    <%= f.select :user_role, options_for_select(['admin', 'tservant', 'checkout']) %>
+    <%= f.select :role, options_for_select(['admin', 'tservant', 'checkout']) %>
   </p>
 
 

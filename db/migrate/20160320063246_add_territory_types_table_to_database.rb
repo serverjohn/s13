@@ -3,7 +3,6 @@ class AddTerritoryTypesTableToDatabase < ActiveRecord::Migration
     create_table :territory_types do |t|
       t.column :name, :string
       t.column :active, :string
-      t.column :checkout_id, :int, :null => false
     end
   end
 

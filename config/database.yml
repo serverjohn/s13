@@ -4,11 +4,11 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: monkeybu_jeco_s13
+  database: congregation_development
   pool: 5
-  username: monkeybu_jeco_s1
-  password: 9mYeksNJGrMhBkTx
-  socket: /tmp/mysql.sock
+  username: railsuser
+  password: thisisapassword
+  socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -17,11 +17,12 @@ test:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: congregation_test
+  database: s13test
   pool: 5
-  username: root
-  password: clientpro0
-  socket: /tmp/mysqld.sock
+  username: railsuser
+  password: thisisapassword
+  socket: /var/run/mysqld/mysqld.sock
+
 
 production:
   adapter: mysql
