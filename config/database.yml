@@ -4,7 +4,7 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: congregation_development
+  database: s13
   pool: 5
   username: railsuser
   password: thisisapassword

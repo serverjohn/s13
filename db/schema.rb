@@ -10,14 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160320064648) do
+ActiveRecord::Schema.define(:version => 20161123233523) do
 
   create_table "checkouts", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "terriory_id"
+    t.integer  "territory_id"
     t.integer  "publisher_id"
-    t.string   "checked_out"
-    t.string   "checked_in"
+    t.integer  "territory_type_id"
+    t.integer  "worked_with_type_id"
+    t.datetime "checked_out"
+    t.datetime "checked_in"
     t.string   "completed_with"
     t.string   "notes"
     t.datetime "created_at"
@@ -41,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20160320064648) do
     t.datetime "updated_at"
     t.string   "phone_number"
     t.string   "textmessage"
+    t.string   "active"
   end
 
   create_table "territories", :force => true do |t|
@@ -56,9 +59,8 @@ ActiveRecord::Schema.define(:version => 20160320064648) do
   end
 
   create_table "territory_types", :force => true do |t|
-    t.string  "name"
-    t.string  "active"
-    t.integer "checkout_id", :null => false
+    t.string "name"
+    t.string "active"
   end
 
   create_table "users", :force => true do |t|
