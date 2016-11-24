@@ -1,10 +1,8 @@
 S13::Application.routes.draw do
 
-  get "territory_types/index"
-  get "territory_types/new"
-  get "territory_types/edit"
-  get "territory_types/show"
-  get "territory_types/destroy"
+  get "settings/index"
+
+
 
   # Root
   root :to => "sessions#new"
@@ -20,4 +18,6 @@ S13::Application.routes.draw do
   resources :checkouts
   resources :publishers
   resources :territory_types
+  resources :settings
+  resources :worked_with_types
 end
