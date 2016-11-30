@@ -149,11 +149,13 @@ class CheckoutsController < ApplicationController
     @publisher_list = @publisher_list.sort # Used an array instead of hash because hashes don't sort right
   end
 
-  def to_be_checked_out    
-    to_be_checked_in = Checkout.order("checked_out ASC").where("checked_in IS NULL")
-    to_be_checked_in.each do |c|
-      @to_be_checked_in << [ "#{c.territory_type.name} - #{c.territory.name}", c.id ]
-    end
+  def to_be_checked_in    
+    #@to_be_checked_in = []
+    # Once database is complete, i.e. territory_id and worked_with_id IS NOT NULL, territory id and worked with id checks can be removed.
+    @to_be_checked_in = Checkout.order("checked_out ASC").where("checked_in IS NULL")
+    #to_be_checked_in.each do |c|
+    #  @to_be_checked_in << [ "#{c.territory_type.name} - #{c.territory.name}", c.id ]
+    #end
     
     return @to_be_checked_in
   end
