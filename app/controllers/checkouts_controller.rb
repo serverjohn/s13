@@ -7,7 +7,7 @@ class CheckoutsController < ApplicationController
     
     # New Check Out
     @checkout = Checkout.new
-    @worked_with_types = WorkedWithType.all(:conditions => { "active" => "Y"}) # All active worked with types
+    @worked_with_types = WorkedWithType.where(active: "Y") # All active worked with types
     @territories = territories # Method for listing territories oldest first
     @publishers = publishers # Method for listing publishers in alphabetical order
 
@@ -36,7 +36,7 @@ class CheckoutsController < ApplicationController
   # GET /checkouts/new.xml
   def new
     @checkout = Checkout.new
-    @worked_with_types = WorkedWithType.all(:conditions => { "active" => "Y"})
+    @worked_with_types = WorkedWithType.where(active: "Y")
 
     @territories = territories # Method for listing territories oldest first
     
@@ -102,10 +102,10 @@ class CheckoutsController < ApplicationController
   end
 
   def territories
-    @territories = Territory.all(:conditions => { "active" => "Y"})
+    @territories = Territory.where(active: "Y")
     last_checked_in = []
     @territories.each do |t|
-      if Checkout.first(:all, :conditions => "checked_in IS NOT NULL AND territory_id = #{t.id}", :order => 'checked_in asc')
+      if Checkout.order("checked_in ASC").where("checked_in IS NOT NULL AND territory_id = #{t.id}").first
         last_checked_in << t.name
       end
     end
@@ -115,14 +115,14 @@ class CheckoutsController < ApplicationController
     
     
     # Find oldest territory that is checked in
-    oldest_checked_in = Checkout.first(:conditions => "checked_in IS NOT NULL", :order => 'checked_in asc')
+    oldest_checked_in = Checkout.order("checked_out ASC").where("checked_in IS NOT NULL").first
     oci_name = Territory.find(oldest_checked_in.territory.id)
     @territories << [ "Oldest Territory: #{TerritoryType.find(oldest_checked_in.territory_id).name.titleize} - #{oci_name.name}", oldest_checked_in.territory_id ]
 
-    territory_types = TerritoryType.all(:conditions => { "active" => "Y"})
+    territory_types = TerritoryType.where(active: "Y")
     territories_bt = []
     territory_types.each do |tt|
-      oldest_by_type = Checkout.first(:all, :conditions => "checked_in IS NOT NULL AND territory_type_id = #{tt.id}", :order => 'checked_in asc')
+      oldest_by_type = Checkout.order("checked_in ASC").where("checked_in IS NOT NULL AND territory_type_id = #{tt.id}").first
       next if oldest_by_type == nil
       obt_name = Territory.find(oldest_by_type.territory_id)
       territories_bt << [ "Oldest: #{tt.name.titleize} - #{obt_name.name}", oldest_by_type.territory_id ]
@@ -131,7 +131,7 @@ class CheckoutsController < ApplicationController
     @territories = @territories + territories_bt.sort
     
     territories_all = []
-    territories = Territory.all(:conditions => { "active" => "Y"})
+    territories = Territory.where(active: "Y")
     territories.each do |t|
       territory_type_name = TerritoryType.find(t.territory_type_id).name.titleize
       territories_all << [ "#{territory_type_name} - #{t.name}", t.id ]
@@ -141,7 +141,7 @@ class CheckoutsController < ApplicationController
   end
 
   def publishers # List Publishers
-    @publishers = Publisher.all(:conditions => { "active" => "Y"})
+    @publishers = Publisher.where(active: "Y")
     @publisher_list = []
     @publishers.each do |publisher|
       @publisher_list << [ "#{publisher.last_name}, #{publisher.first_name}", publisher.id ]
@@ -149,11 +149,13 @@ class CheckoutsController < ApplicationController
     @publisher_list = @publisher_list.sort # Used an array instead of hash because hashes don't sort right
   end
 
-  def to_be_checked_out    
-    to_be_checked_in = Checkout.all(:conditions => "checked_in IS NULL", :order => 'checked_out asc')
-    to_be_checked_in.each do |c|
-      @to_be_checked_in << [ "#{c.territory_type.name} - #{c.territory.name}", c.id ]
-    end
+  def to_be_checked_in    
+    #@to_be_checked_in = []
+    # Once database is complete, i.e. territory_id and worked_with_id IS NOT NULL, territory id and worked with id checks can be removed.
+    @to_be_checked_in = Checkout.order("checked_out ASC").where("checked_in IS NULL")
+    #to_be_checked_in.each do |c|
+    #  @to_be_checked_in << [ "#{c.territory_type.name} - #{c.territory.name}", c.id ]
+    #end
     
     return @to_be_checked_in
   end

@@ -1,6 +1,6 @@
 <h1>Listing territories</h1>
 
-<% form_tag territories_path, :method => 'get' do %>
+<%= form_tag territories_path, :method => 'get' do %>
 	<%= hidden_field_tag :direction, params[:direction] %>
 	<%= hidden_field_tag :sort, params[:sort] %>
 	<p>
@@ -10,11 +10,11 @@
 <% end %>
 <table class="pretty">
   <tr>
-    <th><%= sortable "territory_type_id", "Type" %></th>
-    <th><%= sortable "name" %></th>
-    <th><%= sortable "description" %></th>
-    <th><%= sortable "map" %></th>
-    <th><%= sortable "notes" %></th>
+    <th><%= "territory_type_id" %></th>
+    <th><%= "name" %></th>
+    <th><%= "description" %></th>
+    <th><%= "map" %></th>
+    <th><%= "notes" %></th>
   </tr>
 
 <% @territories.each do |territory| %>

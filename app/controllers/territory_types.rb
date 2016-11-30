@@ -1,8 +1,6 @@
 class Territory_TypesController < ApplicationController
   load_and_authorize_resource
   
-  # GET /publishers
-  # GET /publishers.xml
   def index
     @territory_types = territory_type.all
 
@@ -12,8 +10,6 @@ class Territory_TypesController < ApplicationController
     end
   end
 
-  # GET /publishers/1
-  # GET /publishers/1.xml
   def show
     @territory_type = Territory_type.find(params[:id])
 
@@ -23,8 +19,6 @@ class Territory_TypesController < ApplicationController
     end
   end
 
-  # GET /publishers/new
-  # GET /publishers/new.xml
   def new
     @territory_type = Territory_type.new
 
@@ -34,13 +28,10 @@ class Territory_TypesController < ApplicationController
     end
   end
 
-  # GET /publishers/1/edit
   def edit
     @territory_type = Territory_type.find(params[:id])
   end
 
-  # POST /publishers
-  # POST /publishers.xml
   def create
     @publisher = Publisher.new(params[:publisher])
 
@@ -55,8 +46,6 @@ class Territory_TypesController < ApplicationController
     end
   end
 
-  # PUT /publishers/1
-  # PUT /publishers/1.xml
   def update
     @publisher = Publisher.find(params[:id])
 
@@ -71,8 +60,6 @@ class Territory_TypesController < ApplicationController
     end
   end
 
-  # DELETE /publishers/1
-  # DELETE /publishers/1.xml
   def destroy
     @publisher = Publisher.find(params[:id])
     @publisher.destroy
@@ -83,7 +70,4 @@ class Territory_TypesController < ApplicationController
     end
   end
   
-  def publisher_history
-
-  end
 end

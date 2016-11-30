@@ -1,0 +1,22 @@
+<h1>Worked With Types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Active</th>
+  </tr>
+
+<% @worked_with_types.each do |worked_with_type| %>
+  <tr>
+    <td><%=h worked_with_type.name %></td>
+    <td><%=h worked_with_type.active %></td>
+    <td><%= link_to 'Show', worked_with_type %></td>
+    <td><%= link_to 'Edit', edit_worked_with_type_path(worked_with_type) %></td>
+    <td><%= link_to 'Destroy', worked_with_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Territory Type', new_worked_with_type_path %>

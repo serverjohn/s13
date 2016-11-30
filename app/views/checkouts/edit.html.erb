@@ -1,6 +1,6 @@
 <h1>Editing checkout</h1>
 
-<% form_for(@checkout) do |f| %>
+<%= form_for(@checkout) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -36,13 +36,13 @@
   	<!-- Checks if completed_with has already been set. If not default to id one regular offer -->
 	<% if @checkout.completed_with? %>
 	  	<%= f.label :completed_with %><br />
-		<% for wwt in WorkedWithType.find(:all) %>
+		<% for wwt in WorkedWithType.all %>
 			  <%= f.radio_button :completed_with, wwt.id, wwt.id == @checkout.completed_with.to_i ? {:checked => true} : {:checked => false} %>
 			  <%= wwt.name.titleize %>
 		<% end %>		
 	<% else %>
 	  	<%= f.label :completed_with %><br />
-		<% for wwt in WorkedWithType.find(:all) %>
+		<% for wwt in WorkedWithType.all %>
 			  <%= f.radio_button :completed_with, wwt.id, wwt.id == 1 ? {:checked => true} : {:checked => false} %>
 			  <%= wwt.name.titleize %>
 		<% end %>
