@@ -10,6 +10,7 @@ S13::Application.routes.draw do
   # Sign in and logout
   match "login" => "sessions#new", :as => "login"
   match "logout" => "sessions#destroy", :as => "logout"
+  match "checkin" => "checkouts#to_be_checked_in", :as => "checkin"
 
 
   resources :sessions
