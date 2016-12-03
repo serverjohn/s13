@@ -39,5 +39,10 @@ module S13
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     config.autoload_paths += %W(#{config.root}/lib)
+    
+    config.assets.enabled = true
+    config.assets.version = '1.0'
+    config.assets.prefix = '/assets'
+    config.filter_parameters += [:password, :password_confirmation]
   end
 end

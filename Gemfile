@@ -1,11 +1,20 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
-gem 'rake', '0.8.7'
-gem 'mysql'
-gem 'will_paginate', '2.3.16'
+gem 'rails', '~> 3.1.0'
+gem 'rake'
+gem 'mysql2', '~> 0.3.10'
+gem 'will_paginate'
 gem 'cancan'
-gem 'bundler', '1.0.22'
+
+# Needed for the new asset pipeline
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
+ 
+# jQuery is the default JavaScript library in Rails 3.1
+gem 'jquery-rails'
 
 group :development, :test do
   gem "mocha"
