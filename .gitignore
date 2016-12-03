@@ -4,3 +4,6 @@ log/*.log
 tmp/**/*
 vender
 config/database.yml
+config/initializers/secret_token.rb
+config/initializers/cookie_verification_secret.rb
+vendor/bundle
