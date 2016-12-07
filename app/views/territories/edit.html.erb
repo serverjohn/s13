@@ -1,7 +1,7 @@
 <h1>Editing territory</h1>
 
 <%= form_for(@territory) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @territory %>
 
   <p>
     <%= f.label :type %><br />

@@ -1,7 +1,7 @@
 <h1>New Worked With Type</h1>
 
 <%= form_for(@worked_with_type) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @worked_with_type %>
 
   <p>
     <%= f.label :name %><br />

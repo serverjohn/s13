@@ -3,7 +3,7 @@
 <p>Already have an account? <%= link_to "Log in", login_path %>.</p>
 
 <%= form_for @user do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @user %>
   <p>
     <%= f.label :username %><br />
     <%= f.text_field :username %>

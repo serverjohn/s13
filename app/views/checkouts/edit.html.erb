@@ -1,7 +1,7 @@
 <h1>Editing checkout</h1>
 
 <%= form_for(@checkout) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @checkout %>
 
   <p>
 
