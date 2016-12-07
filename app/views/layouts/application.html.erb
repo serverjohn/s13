@@ -15,7 +15,8 @@
         <%=h current_user.username %> | <%= link_to "logout", logout_path %>
       <% end %>
     </div>
-    <div class="logoHolder"><img class="logo" src="/images/logo.png"></div>
+    <div class="logoHolder"><%= image_tag("logo.png", :class => "logo") %></div>
+    
     <div class="nav-bar">
     	<a class="nav-bar-links" href="/checkouts">CheckedOut</a>
     	<a class="nav-bar-links" href="/checkouts/new">CheckOut</a>

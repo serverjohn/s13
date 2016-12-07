@@ -39,4 +39,7 @@ S13::Application.configure do
   config.public_file_server.headers = {
     'Cache-Control' => 'public, max-age=3600'
   }
+  
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
 end
