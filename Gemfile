@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.0'
+gem 'rails', '4.0'
 gem 'rake'
-gem 'mysql2', '~> 0.3.10'
+gem 'mysql2'
 gem 'will_paginate'
 gem 'cancan'
  
