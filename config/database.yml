@@ -6,8 +6,8 @@ development:
   reconnect: false
   database: s13
   pool: 5
-  username: railsuser
-  password: thisisapassword
+  username: root
+  password: Clientpro0!
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
