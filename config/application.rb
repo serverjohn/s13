@@ -44,5 +44,6 @@ module S13
     config.assets.version = '1.0'
     config.assets.prefix = '/assets'
     config.filter_parameters += [:password, :password_confirmation]
+    config.assets.precompile += %w( session.css )
   end
 end
