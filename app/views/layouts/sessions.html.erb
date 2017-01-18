@@ -4,23 +4,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Territories: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'application' %>
+  <title>s13: Login</title>
+  <%= stylesheet_link_tag 'session' %>
 </head>
 <body>
-      <!-- Errors etc. territories -->
-      <!-- Errors etc. checkouts publishers users -->
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-  <div class="loginContainer">
-    <div class="right-user">
-      <% if logged_in? %>
+  <div class="loginContainer center">
+    <% if logged_in? %>
+      <div class="right-user">
         <%=h current_user.username %> | <%= link_to "logout", logout_path %>
-      <% end %>
-    </div>
-    
-    <div class="login">
+      </div>
+    <% end %>
+    <!-- Errors etc. -->
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>  
+    <div class="login center">
     	<div class="loginLogo center">
     		<%= image_tag("s13_white.png") %>
     	</div>     
