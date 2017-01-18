@@ -5,11 +5,11 @@ class TerritoriesController < ApplicationController
   # GET /territories
   # GET /territories.xml
   def index
-    if params[:search]
-      @territories = Territory.where("name LIKE ?", params[:search]).paginate(:per_page => 10, :page => params[:page])
-    else
-      @territories = Territory.all(:order => sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
-    end
+#    if params[:search]
+#      @territories = Territory.where("name LIKE ?", params[:search]).paginate(:per_page => 10, :page => params[:page])
+#    else
+#      @territories = Territory.all(:order => sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
+#    end
     
     @territory_types = TerritoryType.all
 
