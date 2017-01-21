@@ -1,6 +1,10 @@
 class PublishersController < ApplicationController
   load_and_authorize_resource
-  
+
+  def publisher_params
+    params.require(:publisher).permit(:first_name, :last_name, :email, :phone_number, :textmessage, :notes)
+  end
+
   # GET /publishers
   # GET /publishers.xml
   def index

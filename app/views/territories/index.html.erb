@@ -10,11 +10,11 @@
 <% end %>
 <table class="pretty">
   <tr>
-    <th><%= "territory_type_id" %></th>
-    <th><%= "name" %></th>
-    <th><%= "description" %></th>
-    <th><%= "map" %></th>
-    <th><%= "notes" %></th>
+    <th>Territory Type</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Map</th>
+    <th>Notes</th>
   </tr>
 
 <% @territories.each do |territory| %>
@@ -23,11 +23,8 @@
     <td><%=h tt[0].name.titleize %></td>
     <td><%=h link_to "#{territory.name}", edit_territory_path(territory) %></td>
     <td><%=h territory.description %></td>
-    <td><%=h territory.map %></td>
+    <td><%=h image_tag("/uploads/#{territory.maps}", height: '50') %></td>
     <td><%=h territory.notes %></td>
-    <!--<td style="border: 0"><div id="button_green"><%= link_to 'Show', territory %></div></td>-->
-    <!--<td style="border: 0"><div id="button_green"><%= link_to 'Edit', edit_territory_path(territory) %></td>-->
-    <!--<td style="border: 0"><div id="button_red"><%= link_to 'Delete', territory, :confirm => 'Are you sure?', :method => :delete %></td>-->
   </tr>
 <% end %>
 </table>

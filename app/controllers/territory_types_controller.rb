@@ -1,5 +1,9 @@
 class TerritoryTypesController < ApplicationController
   load_and_authorize_resource
+
+  def territory_type_params
+    params.require(:territory_type).permit(:name, :active)
+  end
   
   # GET /publishers
   # GET /publishers.xml

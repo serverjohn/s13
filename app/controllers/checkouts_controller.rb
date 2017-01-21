@@ -2,7 +2,11 @@ class CheckoutsController < ApplicationController
   # GET /checkouts
   # GET /checkouts.xml
   load_and_authorize_resource
-  
+
+  def checkout_params
+    params.require(:checkout).permit(:user_id, :completed_with, :territory_id, :publisher_id, :checked_out, :notes)
+  end
+ 
   def index
     
     # New Check Out

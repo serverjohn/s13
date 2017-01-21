@@ -1,6 +1,10 @@
 class TerritoriesController < ApplicationController
   load_and_authorize_resource
 
+  def territory_params
+    params.require(:territory).permit(:name, :maps, :description, :notes, :active, :territory_type_id)
+  end
+
   helper_method :sort_column, :sort_direction
   # GET /territories
   # GET /territories.xml
@@ -55,25 +59,23 @@ class TerritoriesController < ApplicationController
   # POST /territories
   # POST /territories.xml
   def create
-    puts "+++++++++++++++++++"
-    puts params[:territory].inspect
-    puts "+++++++++++++++++++"
-
-    uploaded_io = params[:territory][:map]
+    uploaded_io = params[:territory][:maps]
     File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
     end
-    params[:territory][:map] = params[:territory][:map].original_filename
+    params[:territory][:maps] = params[:territory][:maps].original_filename
 
     @territory = Territory.new(params[:territory])
-
+    
+    puts "+++++++++++++++++++"
+    puts params[:territory].inspect
+    puts "+++++++++++++++++++"
     respond_to do |format|
       if @territory.save
         format.html { redirect_to(@territory, :notice => 'Territory was successfully created.') }
         format.xml  { render :xml => @territory, :status => :created, :location => @territory }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @territory.errors, :status => :unprocessable_entity }
+        format.html { render :action => "index", :notice => 'Territory was NOT successfully created.' }
       end
     end
   end
