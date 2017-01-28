@@ -5,9 +5,9 @@ class TerritoriesController < ApplicationController
     params.require(:territory).permit(:name, :maps, :description, :notes, :active, :territory_type_id)
   end
 
-  helper_method :sort_column, :sort_direction
-  # GET /territories
-  # GET /territories.xml
+  helper_method :sort_column, :sort_direction, :territory_types
+
+  # List territories
   def index
 #    if params[:search]
 #      @territories = Territory.where("name LIKE ?", params[:search]).paginate(:per_page => 10, :page => params[:page])
@@ -23,8 +23,7 @@ class TerritoriesController < ApplicationController
     end
   end
 
-  # GET /territories/1
-  # GET /territories/1.xml
+  # Show Territory
   def show
     @territory = Territory.find(params[:id])
 
@@ -34,16 +33,9 @@ class TerritoriesController < ApplicationController
     end
   end
 
-  # GET /territories/new
-  # GET /territories/new.xml
+  # New territory
   def new
     @territory = Territory.new
-    
-    @territory_types = []
-    territory_types = TerritoryType.where(active: "Y")
-    territory_types.each do |tt|
-      @territory_types << [tt.name.titleize,tt.id]
-    end
     
     respond_to do |format|
       format.html # new.html.erb
@@ -51,37 +43,32 @@ class TerritoriesController < ApplicationController
     end
   end
 
-  # GET /territories/1/edit
+  # Edit territory
   def edit
     @territory = Territory.find(params[:id])
   end
 
-  # POST /territories
-  # POST /territories.xml
+  # Create territories
   def create
-    uploaded_io = params[:territory][:maps]
-    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
+    if params[:territory][:maps] # Determine if the maps parameter has been set. Then save it. 
+      uploaded_io = params[:territory][:maps]
+      File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+      params[:territory][:maps] = params[:territory][:maps].original_filename
     end
-    params[:territory][:maps] = params[:territory][:maps].original_filename
 
     @territory = Territory.new(params[:territory])
-    
-    puts "+++++++++++++++++++"
-    puts params[:territory].inspect
-    puts "+++++++++++++++++++"
-    respond_to do |format|
-      if @territory.save
-        format.html { redirect_to(@territory, :notice => 'Territory was successfully created.') }
-        format.xml  { render :xml => @territory, :status => :created, :location => @territory }
-      else
-        format.html { render :action => "index", :notice => 'Territory was NOT successfully created.' }
-      end
+
+    if @territory.save
+      format.html { redirect_to(@territory, :notice => 'Territory was successfully created.') }
+    else
+      render :action => 'new'
     end
+
   end
 
-  # PUT /territories/1
-  # PUT /territories/1.xml
+  # Update territory
   def update
     @territory = Territory.find(params[:id])
 
@@ -96,8 +83,8 @@ class TerritoriesController < ApplicationController
     end
   end
 
-  # DELETE /territories/1
-  # DELETE /territories/1.xml
+  # Delete territory.
+  # Change this to make in active.
   def destroy
     @territory = Territory.find(params[:id])
     @territory.destroy
@@ -106,6 +93,18 @@ class TerritoriesController < ApplicationController
       format.html { redirect_to(territories_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  # Gather Territory Type names and return them.
+  def territory_types 
+    territory_types = []
+    territory_types_tmp = TerritoryType.where(active: "Y")
+    
+    territory_types_tmp.each do |tt|
+      territory_types << [tt.name.titleize,tt.id]
+    end
+    
+    return territory_types
   end
 
 private
