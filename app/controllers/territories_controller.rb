@@ -59,15 +59,15 @@ class TerritoriesController < ApplicationController
     end
 
     @territory = Territory.new(params[:territory])
-
-    if @territory.save
+    respond_to do |format|
+     if @territory.save
       format.html { redirect_to(@territory, :notice => 'Territory was successfully created.') }
-    else
-      render :action => 'new'
-    end
-
+      else
+       render :action => 'new'
+     end
+   end
   end
-
+   
   # Update territory
   def update
     @territory = Territory.find(params[:id])
