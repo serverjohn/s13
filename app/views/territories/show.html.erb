@@ -1,28 +1,31 @@
-<p>
-  <b>Territory Type:</b>
-  <%=h @territory.territory_type_id %>
-</p>
-
+<h1>Territory:</h1>
 <p>
   <b>Name:</b>
-  <%=h @territory.name %>
+  <%= @territory.name %>
 </p>
-
+<p>
+  <b>Territory Type:</b>
+  <%= @territory.territory_type.name %>
+</p>
 <p>
   <b>Description:</b>
-  <%=h @territory.description %>
+  <%= @territory.description %>
 </p>
 
 <p>
   <b>Map:</b>
-  <%=h @territory.maps %>
+  <%= @territory.maps %>
 </p>
 
 <p>
   <b>Notes:</b>
-  <%=h @territory.notes %>
+  <%= @territory.notes %>
 </p>
 
+<p>
+  <b>Active:</b>
+  <% if @territory.active == "Y" %>Yes<% else %>No<% end %>
+</p>
 
 <%= link_to 'Edit', edit_territory_path(@territory) %> |
 <%= link_to 'Back', territories_path %>

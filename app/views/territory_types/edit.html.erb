@@ -1,2 +1,22 @@
-<h1>TerritoryTypes#edit</h1>
-<p>Find me in app/views/territory_types/edit.html.erb</p>
+<h1>Edit Territory Type: <%= @territory_type.name %></h1>
+
+<%= form_for(@territory_type) do |f| %>
+  <%= render "shared/error_messages", :target => @territory_type %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+  <%= f.label :active %><br>
+  <%= f.radio_button :active, 'Y', :checked => true %> 
+  <%= label :active_y, 'Yes' %>
+  <%= f.radio_button :active, 'N' %>
+  <%= label :contactmethod_n, 'No' %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @territory_type %> |
+<%= link_to 'Back', territory_types_path %>

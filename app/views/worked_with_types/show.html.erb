@@ -1,2 +1,12 @@
-<h1>TerritoryTypes#show</h1>
-<p>Find me in app/views/worked_with_types/show.html.erb</p>
+<h1>Worked With Type:</h1>
+<p>
+  <b>Name:</b>
+  <%= @worked_with_type.name %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <% if @worked_with_type.active == "Y" %>Yes<% else %>No<% end %>
+</p>
+<%= link_to 'Edit', edit_worked_with_type_path(@worked_with_type) %> |
+<%= link_to 'Back', worked_with_types_path %>

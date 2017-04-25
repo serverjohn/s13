@@ -7,8 +7,8 @@ development:
   database: s13
   pool: 5
   username: root
-  password: Clientpro0!
-  socket: /var/run/mysqld/mysqld.sock
+  password: 
+  socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,9 +19,9 @@ test:
   reconnect: false
   database: s13test
   pool: 5
-  username: railsuser
-  password: thisisapassword
-  socket: /var/run/mysqld/mysqld.sock
+  username: root
+  password: clientpro0
+  socket: /var/mysqld/mysqld.sock
 
 
 production:
@@ -30,6 +30,6 @@ production:
   reconnect: false
   database: monkeybu_jeco_s13
   pool: 5
-  username: monkeybu_jeco_s1
-  password: 9mYeksNJGrMhBkTx
-  socket: /var/run/mysqld/mysqld.sock
+  username: root
+  password: clientpro0
+  socket: /var/mysqld/mysqld.sock

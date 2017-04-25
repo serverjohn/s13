@@ -1,36 +1,36 @@
 <p>
   <b>User:</b>
-  <%=h @checkout.user_id %>
+  <%=h @checkout.user.first_name %> <%=h @checkout.user.last_name %>
 </p>
 
 <p>
   <b>Terriory:</b>
-  <%=h @checkout.territory_id %>
+  <%=h @checkout.territory.name %>
 </p>
 
 <p>
   <b>Publisher:</b>
-  <%=h @checkout.publisher_id %>
+  <%= @checkout.publisher.first_name %> <%=h @checkout.publisher.last_name %>
 </p>
 
 <p>
   <b>Checked out:</b>
-  <%=h @checkout.checked_out %>
+  <%= @checkout.checked_out.strftime("%m-%d-%Y") %>
 </p>
 
 <p>
   <b>Checked in:</b>
-  <%=h @checkout.checked_in %>
+  <%= unless @checkout.checked_in.nil? then @checkout.checked_in.strftime("%m-%d-%Y") end %>
 </p>
 
 <p>
   <b>Completed with:</b>
-  <%=h @checkout.completed_with %>
+  <%= unless @checkout.worked_with_type.nil? then @checkout.worked_with_type.name end %>
 </p>
 
 <p>
   <b>Notes:</b>
-  <%=h @checkout.notes %>
+  <%= @checkout.notes %>
 </p>
 
 

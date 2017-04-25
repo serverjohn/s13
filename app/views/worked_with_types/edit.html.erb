@@ -1,2 +1,22 @@
 <h1>Worked With Types Edit</h1>
-<p>Find me in app/views/worked_with_types/edit.html.erb</p>
+
+<%= form_for(@worked_with_type) do |f| %>
+  <%= render "shared/error_messages", :target => @worked_with_type %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+  <%= f.label :active %><br>
+  <%= f.radio_button :active, 'Y', :checked => true %> 
+  <%= label :active_y, 'Yes' %>
+  <%= f.radio_button :active, 'N' %>
+  <%= label :contactmethod_n, 'No' %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @worked_with_type %> |
+<%= link_to 'Back', worked_with_types_path %>

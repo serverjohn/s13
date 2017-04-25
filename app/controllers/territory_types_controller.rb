@@ -5,8 +5,8 @@ class TerritoryTypesController < ApplicationController
     params.require(:territory_type).permit(:name, :active)
   end
   
-  # GET /publishers
-  # GET /publishers.xml
+  # GET /territory_types
+  # GET /territory_types.xml
   def index
     @territory_type = TerritoryType.all
 
@@ -16,10 +16,10 @@ class TerritoryTypesController < ApplicationController
     end
   end
 
-  # GET /publishers/1
-  # GET /publishers/1.xml
+  # GET /territory_types/1
+  # GET /territory_types/1.xml
   def show
-    @territory_type = Territory_type.find(params[:id])
+    @territory_type = TerritoryType.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,8 +27,8 @@ class TerritoryTypesController < ApplicationController
     end
   end
 
-  # GET /publishers/new
-  # GET /publishers/new.xml
+  # GET /territory_types/new
+  # GET /territory_types/new.xml
   def new
     @territory_type = TerritoryType.new
 
@@ -38,20 +38,20 @@ class TerritoryTypesController < ApplicationController
     end
   end
 
-  # GET /publishers/1/edit
+  # GET /territory_types/1/edit
   def edit
     @territory_type = TerritoryType.find(params[:id])
   end
 
-  # POST /publishers
-  # POST /publishers.xml
+  # POST /territory_types
+  # POST /territory_types.xml
   def create
-    @publisher = TerritoryType.new(params[:territory_type])
+    @territory_type = TerritoryType.new(params[:territory_type])
 
     respond_to do |format|
-      if @publisher.save
-        format.html { redirect_to(@publisher, :notice => 'Territory Type successfully created') }
-        format.xml  { render :xml => @publisher, :status => :created, :location => @territory_type }
+      if @territory_type.save
+        format.html { redirect_to(@territory_type, :notice => 'Territory Type successfully created') }
+        format.xml  { render :xml => @territory_type, :status => :created, :location => @territory_type }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @territory_type.errors, :status => :unprocessable_entity }
@@ -63,8 +63,8 @@ class TerritoryTypesController < ApplicationController
     @territory_type = TerritoryType.find(params[:id])
 
     respond_to do |format|
-      if @publisher.update_attributes(params[:territory_type])
-        format.html { redirect_to(@territory_type, :notice => 'Publisher was successfully updated.') }
+      if @territory_type.update_attributes(params[:territory_type])
+        format.html { redirect_to(@territory_type, :notice => 'The territory type was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -74,7 +74,7 @@ class TerritoryTypesController < ApplicationController
   end
 
   def destroy
-    @territory_type = TerritoryTypes.find(params[:id])
+    @territory_type = TerritoryType.find(params[:id])
     @territory_type.destroy
 
     respond_to do |format|

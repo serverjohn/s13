@@ -1,2 +1,12 @@
-<h1>TerritoryTypes#show</h1>
-<p>Find me in app/views/territory_types/show.html.erb</p>
+<h1>Territory Type:</h1>
+<p>
+  <b>Name:</b>
+  <%= @territory_type.name %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <% if @territory_type.active == "Y" %>Yes<% else %>No<% end %>
+</p>
+<%= link_to 'Edit', edit_territory_type_path(@territory_type) %> |
+<%= link_to 'Back', territory_types_path %>

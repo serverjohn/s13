@@ -3,9 +3,9 @@
 
 <table>
   <tr>
-    <th>User</th>
+    <th>Checked Out By</th>
     <th>Terriory</th>
-    <th>Publisher</th>
+    <th>Checked Out To</th>
     <th>Checked out</th>
     <th>Checked in</th>
     <th>Completed with</th>
@@ -14,13 +14,13 @@
 
 <% @checkouts.each do |checkout| %>
   <tr>
-    <td><%=h checkout.user_id %></td>
-    <td><%=h checkout.territory.name %></td>
-    <td><%=h checkout.publisher.name %></td>
-    <td><%=h checkout.checked_out.strftime("%m-%d-%Y") %></td>
-    <td><%= if checkout.checked_in == nil then checkout.checked_in else checkout.checked_in.strftime("%m-%d-%Y") end %></td>
-    <td><%=h checkout.completed_with %></td>
-    <td><%=h checkout.notes %></td>
+    <td><%= checkout.user.first_name %> <%=h checkout.user.last_name %></td>
+    <td><%= checkout.territory.name %></td>
+    <td><%= checkout.publisher.name %></td>
+    <td><%= checkout.checked_out.strftime("%m-%d-%Y") %></td>
+    <td><%= unless checkout.checked_in.nil? then checkout.checked_in.strftime("%m-%d-%Y") end %></td>
+    <td><%= unless checkout.worked_with_type.nil? then checkout.worked_with_type.name end %></td>
+    <td><%= checkout.notes %></td>
     <td><%= link_to 'Show', checkout %></td>
     <td><%= if checkout.checked_in == nil then link_to 'Edit/Check', edit_checkout_path(checkout) else link_to 'Edit', edit_checkout_path(checkout) end     %></td>
     <td><%= link_to 'Destroy', checkout, :confirm => 'Are you sure?', :method => :delete %></td>

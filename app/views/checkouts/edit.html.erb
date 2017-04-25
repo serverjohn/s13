@@ -4,17 +4,18 @@
   <%= render "shared/error_messages", :target => @checkout %>
 
   <p>
-
-    <%= f.label :user_id, "USER Checked Out By:" %><br />
-    <%= f.text_field :user_id %>
+	Territory Department Member:<br>
+    <%= @checkout.user.first_name %> <%= @checkout.user.last_name %>
+    <%= f.hidden_field :user_id %>
   </p>
   <p>
-    <%= f.label :territory_id %><br />
-    <%= f.text_field :territory_id %>
+  	Territory:<br>
+    <%= @checkout.territory.name %>
+    <%= f.hidden_field :territory_id %>
   </p>
   <p>
-    <%= f.label :publisher_id %><br />
-    <%= f.text_field :publisher_id %>
+    <%= f.label :publisher_id, "Checked Out To:" %><br>
+    <%= f.select :publisher_id, options_for_select(@publisher_list), :selected => :publisher_id %>
   </p>
   <p>
     <%= f.label :checked_out %><br />

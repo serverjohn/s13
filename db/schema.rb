@@ -58,10 +58,9 @@ ActiveRecord::Schema.define(version: 20161203222156) do
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "territories", force: true do |t|
-    t.string   "type"
     t.string   "name"
     t.string   "description"
-    t.string   "map"
+    t.string   "maps"
     t.string   "notes"
     t.datetime "created_at"
     t.datetime "updated_at"

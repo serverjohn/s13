@@ -10,8 +10,8 @@
 <% end %>
 <table class="pretty">
   <tr>
-    <th>Territory Type</th>
     <th>Name</th>
+    <th>Territory Type</th>
     <th>Description</th>
     <th>Map</th>
     <th>Notes</th>
@@ -20,8 +20,8 @@
 <% @territories.each do |territory| %>
 <% tt = @territory_types.select { |tt| tt.id == territory.territory_type_id.to_i } %>
   <tr>
-    <td><%=h tt[0].name.titleize %></td>
     <td><%=h link_to "#{territory.name}", edit_territory_path(territory) %></td>
+    <td><%=h tt[0].name.titleize %></td>
     <td><%=h territory.description %></td>
     <td><%=h image_tag("/uploads/#{territory.maps}", height: '50') %></td>
     <td><%=h territory.notes %></td>

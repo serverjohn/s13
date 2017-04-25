@@ -8,10 +8,12 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :active %><br />
-    <%= f.text_field :active %>
+  <%= f.label :active %><br>
+  <%= f.radio_button :active, 'Y', :checked => true %> 
+  <%= label :active_y, 'Yes' %>
+  <%= f.radio_button :active, 'N' %>
+  <%= label :contactmethod_n, 'No' %>
   </p>
-
   <p>
     <%= f.submit 'Create' %>
   </p>
