@@ -5,8 +5,6 @@ class PublishersController < ApplicationController
     params.require(:publisher).permit(:first_name, :last_name, :email, :phone_number, :textmessage, :notes)
   end
 
-  # GET /publishers
-  # GET /publishers.xml
   def index
     @publishers = Publisher.all
 
@@ -16,8 +14,6 @@ class PublishersController < ApplicationController
     end
   end
 
-  # GET /publishers/1
-  # GET /publishers/1.xml
   def show
     @publisher = Publisher.find(params[:id])
 
@@ -44,8 +40,6 @@ class PublishersController < ApplicationController
     end
   end
 
-  # GET /publishers/new
-  # GET /publishers/new.xml
   def new
     @publisher = Publisher.new
 
@@ -55,13 +49,10 @@ class PublishersController < ApplicationController
     end
   end
 
-  # GET /publishers/1/edit
   def edit
     @publisher = Publisher.find(params[:id])
   end
 
-  # POST /publishers
-  # POST /publishers.xml
   def create
     @publisher = Publisher.new(params[:publisher])
 
@@ -76,8 +67,6 @@ class PublishersController < ApplicationController
     end
   end
 
-  # PUT /publishers/1
-  # PUT /publishers/1.xml
   def update
     @publisher = Publisher.find(params[:id])
 
@@ -92,8 +81,6 @@ class PublishersController < ApplicationController
     end
   end
 
-  # DELETE /publishers/1
-  # DELETE /publishers/1.xml
   def destroy
     @publisher = Publisher.find(params[:id])
     @publisher.destroy

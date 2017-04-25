@@ -8,7 +8,6 @@ class CheckoutsController < ApplicationController
   end
  
   def index
-    
     # New Check Out
     @checkout = Checkout.new
     @worked_with_types = WorkedWithType.where(active: "Y") # All active worked with types
@@ -55,6 +54,7 @@ class CheckoutsController < ApplicationController
   # GET /checkouts/1/edit
   def edit
     @checkout = Checkout.find(params[:id])
+    @publisers = publishers
   end
 
   # POST /checkouts
