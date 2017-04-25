@@ -1,3 +1,12 @@
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .container {
+    	width: 90%;
+    	min-width: 400px;
+    	background-color:#B054BF;
+    	border:hidden;
+    }
+}
 
 a img {
   border: none;
@@ -135,15 +144,14 @@ background-color:#91B22B;
 	}
 
 .container {
-position:absolute;
 top:0px;
 right:0px;
 left:0px;
 margin-left:auto;
 margin-right:auto;
-min-width:620px;
+width:90%;
+border: black solid 1px;
 max-width:980px;
-height:100%;
 }
 
 .right-user {
