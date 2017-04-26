@@ -9,3 +9,4 @@ config/initializers/cookie_verification_secret.rb
 vendor/bundle
 public/.htaccess
 public/uploads
+config/database.yml

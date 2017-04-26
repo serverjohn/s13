@@ -67,15 +67,15 @@ class WorkedWithTypesController < ApplicationController
   def destroy
     @worked_with_type = WorkedWithType.find(params[:id])
     @worked_with_type.active = "N"
-    puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    puts @worked_with_type.inspect
+
     respond_to do |format|
-      if @worked_with_type.update_atributes(@worked_with_type)
-        format.html { redirect_to(worked_with_types_url, :notice => 'WorkedWithType: #{@worked_with_type} has been marked as inactive.') }
-        format.xml  { head :ok }
-      end
-        format.html { render :action => "show" }
+      if @worked_with_type.save
+        format.html { redirect_to(@worked_with_type) }
+      else
+        format.html { render :action => "edit" }
         format.xml  { render :xml => @worked_with_type.errors, :status => :unprocessable_entity }
+      end
     end
   end
+
 end

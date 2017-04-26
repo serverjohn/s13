@@ -12,11 +12,10 @@
     <td><% if worked_with_type.active == "Y" %>Yes<% else %>No<% end %></td>
     <td><%= link_to 'Show', worked_with_type %></td>
     <td><%= link_to 'Edit', edit_worked_with_type_path(worked_with_type) %></td>
-    <td><%= link_to 'Destroy', worked_with_type, :data {:confirm => 'Are you sure?'}, :method => :delete %></td>
+    <td><%= link_to 'Deactivate', worked_with_type, method: :delete, :data => {:confirm => 'Are you sure you would like to make this inactive?'} %></td>
   </tr>
 <% end %>
 </table>
-
 <br />
 
 <%= link_to 'Create New Territory Type', new_worked_with_type_path %>
