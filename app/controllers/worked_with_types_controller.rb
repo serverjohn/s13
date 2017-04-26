@@ -64,17 +64,16 @@ class WorkedWithTypesController < ApplicationController
     end
   end
 
-  def destroy
-    @worked_with_type = WorkedWithType.find(params[:id])
-    @worked_with_type.active = "N"
-
-    respond_to do |format|
-      if @worked_with_type.save
-        format.html { redirect_to(@worked_with_type) }
+  def disable
+    @worked_with_type = WorkedWithType.find(params[:format])
+    if @worked_with_type.active == "Y" 
+      if @worked_with_type.update(active: "N")
+        redirect_to(worked_with_types_path, :notice => "#{@worked_with_type.name.titleize} was disabled.")
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @worked_with_type.errors, :status => :unprocessable_entity }
+        render :action => "edit"
       end
+    else
+      redirect_to(worked_with_types_path, :alert => "#{@worked_with_type.name.titleize} has already been disabled.")
     end
   end
 
