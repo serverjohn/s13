@@ -5,6 +5,14 @@
 <%= form_for @user do |f| %>
   <%= render "shared/error_messages", :target => @user %>
   <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
     <%= f.label :username %><br />
     <%= f.text_field :username %>
   </p>
@@ -24,7 +32,13 @@
     <%= f.label :user_role, "User Role" %><br />
     <%= f.select :role, options_for_select(['admin', 'tservant', 'checkout']) %>
   </p>
-
+  <p>
+  <%= f.label :active %><br>
+  <%= f.radio_button :active, 'Y', :checked => true %> 
+  <%= label :active_y, 'Yes' %>
+  <%= f.radio_button :active, 'N' %>
+  <%= label :contactmethod_n, 'No' %>
+  </p>
 
   <p><%= f.submit "Sign up" %></p>
 <% end %>

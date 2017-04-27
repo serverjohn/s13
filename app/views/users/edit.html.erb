@@ -28,6 +28,13 @@
     <%= f.select :role, options_for_select(['admin', 'tservant', 'checkout']) %>
   </p>
   <p>
+  <%= f.label :active %><br>
+  <%= f.radio_button :active, 'Y', :checked => true %> 
+  <%= label :active_y, 'Yes' %>
+  <%= f.radio_button :active, 'N' %>
+  <%= label :contactmethod_n, 'No' %>
+  </p>
+  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
