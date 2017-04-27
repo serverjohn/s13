@@ -11,7 +11,7 @@ S13::Application.routes.draw do
   get "checkin" => "checkouts#to_be_checked_in", :as => "checkin"
 
   # Routes for the disable method in the checkouts, territories, territory_types, users, and worked_with_types controllers.
-  get "ww_disable" => "checkouts#disable", :as => "co_disable"
+  get "co_disable" => "checkouts#disable", :as => "co_disable"
   get "ts_disable" => "territories#disable", :as => "ts_disable" 
   get "tt_disable" => "territory_types#disable", :as => "tt_disable"
   get "ur_disable" => "users#disable", :as => "ur_disable"
