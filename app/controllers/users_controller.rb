@@ -34,4 +34,17 @@ class UsersController < ApplicationController
       end
     end
   end
+  
+  def disable
+    @user = User.find(params[:format])
+    if @user.active == "Y" 
+      if @user.update(active: "N")
+        redirect_to(users_path, :notice => "#{@user.name.titleize} was disabled.")
+      else
+        render :action => "edit"
+      end
+    else
+      redirect_to(users_path, :alert => "#{@user.name.titleize} has already been disabled.")
+    end
+  end
 end

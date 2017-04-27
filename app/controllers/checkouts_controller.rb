@@ -93,15 +93,16 @@ class CheckoutsController < ApplicationController
     end
   end
 
-  # DELETE /checkouts/1
-  # DELETE /checkouts/1.xml
-  def destroy
-    @checkout = Checkout.find(params[:id])
-    @checkout.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(checkouts_url) }
-      format.xml  { head :ok }
+  def disable
+    @checkout = Checkout.find(params[:format])
+    if @checkout.active == "Y" 
+      if @checkout.update(active: "N")
+        redirect_to(checkouts_path, :notice => "#{@checkout.name.titleize} was disabled.")
+      else
+        render :action => "edit"
+      end
+    else
+      redirect_to(checkouts_path, :alert => "#{@checkout.name.titleize} has already been disabled.")
     end
   end
 

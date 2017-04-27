@@ -83,15 +83,16 @@ class TerritoriesController < ApplicationController
     end
   end
 
-  # Delete territory.
-  # Change this to make in active.
-  def destroy
-    @territory = Territory.find(params[:id])
-    @territory.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(territories_url) }
-      format.xml  { head :ok }
+  def disable
+    @territory = Territory.find(params[:format])
+    if @territory.active == "Y" 
+      if @territory.update(active: "N")
+        redirect_to(territories_path, :notice => "#{@territory.name.titleize} was disabled.")
+      else
+        render :action => "edit"
+      end
+    else
+      redirect_to(territories_path, :alert => "#{@territory.name.titleize} has already been disabled.")
     end
   end
   

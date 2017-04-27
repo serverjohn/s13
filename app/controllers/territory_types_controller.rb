@@ -73,13 +73,16 @@ class TerritoryTypesController < ApplicationController
     end
   end
 
-  def destroy
-    @territory_type = TerritoryType.find(params[:id])
-    @territory_type.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(territory_types_url) }
-      format.xml  { head :ok }
+  def disable
+    @territory_type = TerritoryType.find(params[:format])
+    if @territory_type.active == "Y" 
+      if @territory_type.update(active: "N")
+        redirect_to(territory_types_path, :notice => "#{@territory_type.name.titleize} was disabled.")
+      else
+        render :action => "edit"
+      end
+    else
+      redirect_to(territory_types_path, :alert => "#{@territory_type.name.titleize} has already been disabled.")
     end
   end
   
