@@ -12,7 +12,7 @@
     <td><%=h territory_type.active %></td>
     <td><%= link_to 'Show', territory_type %></td>
     <td><%= link_to 'Edit', edit_territory_type_path(territory_type) %></td>
-    <td><%= link_to 'Destroy', territory_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Disable', tt_disable_path(territory_type), :data => {:confirm => "Are you sure you want to disable \"#{territory_type.name.titleize}?\""} %></td>
   </tr>
 <% end %>
 </table>
