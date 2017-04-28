@@ -1,4 +1,4 @@
-<h1>Users List</h1>
+<h1>User List</h1>
 
 <table>
   <tr>
@@ -6,6 +6,10 @@
     <th>First name</th>
     <th>Last name</th>
     <th>Email</th>
+    <th>Phone Number</th>
+    <th>Text Message?</th>
+    <th>Cell Carrier</th>
+    <th>Notes</th>
     <th>Role</th>
     <th>Active</th>
   </tr>
@@ -16,6 +20,10 @@
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
     <td><%= user.email %></td>
+    <td><%= user.phone_number %></td>
+	<td><%= user.text_message %></td>
+	<td><%= user.cell_carrier %></td>
+	<td><%= user.notes %></td>
     <td><%= user.role %></td>
     <td><% if user.active == "Y" %>Yes<% else %>No<% end %></td>
     <td><%= link_to 'Show', user %></td>

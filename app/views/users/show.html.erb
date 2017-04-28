@@ -1,28 +1,41 @@
 <p>
   <b>User name:</b>
-  <%=h @user.username %>
+  <%= @user.username %>
 </p>
 
 <p>
   <b>First name:</b>
-  <%=h @user.first_name %>
+  <%= @user.first_name %>
 </p>
 
 <p>
   <b>Last name:</b>
-  <%=h @user.last_name %>
+  <%= @user.last_name %>
 </p>
 
 <p>
   <b>Email:</b>
-  <%=h @user.email %>
+  <%= @user.email %>
 </p>
-
 <p>
-  <b>Password:</b>
-  <%=h @user.password %>
+  <b>Phone Number:</b>
+  <%= @user.phone_number %>
 </p>
-
-
+<p>
+  <b>Text Message?:</b>
+  <%= @user.text_message %>
+</p>
+<p>
+  <b>Cell Carrier:</b>
+  <%= @user.cell_carrier %>
+</p>
+<p>
+  <b>Active:</b>
+  <% if @user.active == "Y" %>Yes<% else %>No<% end %>
+</p>
+<p>
+  <b>Notes:</b>
+  <%= @user.notes %>
+</p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
