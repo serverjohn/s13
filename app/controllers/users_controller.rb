@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :password_confirmation, :role, :first_name, :last_name, :active)
+    params.require(:user).permit(:email, :username, :password, :password_confirmation, :role, :first_name, :last_name, :active, :phone_number, :notes, :text_message, :cell_carrier)
   end
 
   def new
