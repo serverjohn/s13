@@ -16,23 +16,41 @@ class PublishersController < ApplicationController
 
   def show
     @publisher = Publisher.find(params[:id])
-
+    @territories_checked_out = {}
+    # Get history of territories that have been checked out but not checked in.
+    @publisher.checkouts.each do |hist|
+      if not hist.checked_in
+        @territories_checked_out[":#{hist.id}"] = {
+            :name => "#{hist.territory.name}",
+            :checkedoutat => "#{hist.checked_out.strftime("%m-%d-%Y")}",
+            :age_months => "#{ (Date.today.year * 12 + Date.today.month) - (hist.checked_out.year * 12 + hist.created_at.month) }",
+          }
+        
+      end
+    end
+    
+    # Get full history.
     @publisher_history = {}
     @publisher.checkouts.each do |hist|
       if hist.checked_in
-        @publisher_history["hist_#{hist.id}".to_sym] = hist
-        @publisher_history["hist_#{hist.id}".to_sym][:age] = hist.checked_in.to_date.month - hist.checked_out.to_date.month
-      end
-    end    
-    @publisher_history = @publisher_history.sort_by { |k, v| v[:checked_out] }
-    
-    @territories_checked_out = {}
-    @publisher.checkouts.each do |hist|
-      if not hist.checked_in
-        @territories_checked_out["hist_#{hist.id}".to_sym] = hist
-        @territories_checked_out["hist_#{hist.id}".to_sym][:age] = Time.now.month - hist.checked_out.to_date.month
+        months = (hist.checked_in.year * 12 + hist.checked_in.month) - (hist.checked_out.year * 12 + hist.checked_out.month)
+        days_co = hist.checked_out.day.to_f / (Time.days_in_month hist.checked_out.month, hist.checked_out.year)
+        days_ci = hist.checked_in.day.to_f / (Time.days_in_month hist.checked_in.month) 
+        
+        puts "#{months.inspect}"
+        puts "#{days_co.inspect}"
+        puts "#{days_ci.inspect}"
+        @publisher_history[":#{hist.id}"] = {
+          :name => "#{hist.territory.name}",
+          :age => "#{months + days_co + days_ci}",
+          :checkout => "#{hist.checked_out.strftime("%m-%d-%Y")}",
+          :checkin => "#{hist.checked_in.strftime("%m-%d-%Y")}",
+          :workedwith => "#{hist.worked_with_type.name}"
+        }
       end
     end
+    
+    @publisher_history = @publisher_history.sort_by { |hist, date| date }
 
     respond_to do |format|
       format.html # show.html.erb
