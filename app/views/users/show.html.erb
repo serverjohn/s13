@@ -37,5 +37,76 @@
   <b>Notes:</b>
   <%= @user.notes %>
 </p>
+
+<p>
+  <b>Territories Checked Out: </b>
+</p>
+<table>
+<tr>
+	<th>
+	<b>Territory</b>
+	</th>
+	<th>
+	<b>Checked Out</b>
+	</th>
+	<th>
+	<b>Age</b>
+	</th>
+</tr>
+	<% if @territories_checked_out.empty? %>
+		<tr>
+			<td>None</td>
+			<td>None</td>
+			<td>None</td>
+		</tr>		
+	<% else %>
+		<% @territories_checked_out.each do |key, value| %>
+			<tr>
+				<td><%= value[:name] %></td>
+				<td><%= value[:checkedoutat] %></td>
+				<td><%= "#{value[:age_months]} Month(s) #{Date.today.day} Day(s)" %></td>
+			</tr>
+  		<% end %> 
+  	<% end %> 
+</table>
+
+<p>
+  <b>History:</b>
+</p>
+<table>
+	<% if @user_history.empty? %>
+		<tr>
+			<th colspan="5">None</th>
+		</tr>		
+	<% else %>	
+		<tr>
+			<th>
+			<b>Territory</b>
+			</th>
+			<th>
+			<b>Checked Out</b>
+			</th>
+			<th>
+			<b>Checked In</b>
+			</th>
+			<th>
+			<b>Age</b>
+			</th>
+			<th>
+			<b>Worked With</b>
+			</th>
+		</tr>
+		<% @user_history.each do |key, value| %>
+			<tr>
+				<td><%= value[:name] %></td>
+				<td><%= value[:checkout] %></td>
+				<td><%= value[:checkin] %></td>
+				<td><%= number_with_precision(value[:age], :precision => 2)  %>m</td>
+				<td> </td>
+			</tr>
+	  	<% end %>
+  	<% end %>
+</table>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

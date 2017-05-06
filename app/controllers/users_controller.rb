@@ -24,6 +24,42 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    @territories_checked_out = {}
+    # Get history of territories that have been checked out but not checked in.
+    Checkout.where(publisher_id: "#{@user.id}").each do |hist|
+      if not hist.checked_in
+        @territories_checked_out[":#{hist.id}"] = {
+            :name => "#{hist.territory.name}",
+            :checkedoutat => "#{hist.checked_out.strftime("%m-%d-%Y")}",
+            :age_months => "#{ (Date.today.year * 12 + Date.today.month) - (hist.checked_out.year * 12 + hist.created_at.month) }",
+          }
+        
+      end
+    end
+    
+    # Get full history.
+    @user_history = {}
+    @user.checkouts.each do |hist|
+      if hist.checked_in
+        months = (hist.checked_in.year * 12 + hist.checked_in.month) - (hist.checked_out.year * 12 + hist.checked_out.month)
+        days_co = hist.checked_out.day.to_f / (Time.days_in_month hist.checked_out.month, hist.checked_out.year)
+        days_ci = hist.checked_in.day.to_f / (Time.days_in_month hist.checked_in.month) 
+        
+        puts "#{months.inspect}"
+        puts "#{days_co.inspect}"
+        puts "#{days_ci.inspect}"
+        @user_history[":#{hist.id}"] = {
+          :name => "#{hist.territory.name}",
+          :age => "#{months + days_co + days_ci}",
+          :checkout => "#{hist.checked_out.strftime("%m-%d-%Y")}",
+          :checkin => "#{hist.checked_in.strftime("%m-%d-%Y")}",
+          :workedwith => "#{hist.worked_with_type.name}"
+        }
+      end
+    end
+  end
 
   def update
     @user = User.find(params[:id])

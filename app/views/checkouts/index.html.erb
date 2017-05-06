@@ -16,7 +16,7 @@
   <tr>
     <td><%= checkout.user.first_name %> <%=h checkout.user.last_name %></td>
     <td><%= checkout.territory.name %></td>
-    <td><%= checkout.publisher.name %></td>
+    <td><%= User.find(checkout.publisher_id).last_name %>, <%= User.find(checkout.publisher_id).first_name %></td>
     <td><%= checkout.checked_out.strftime("%m-%d-%Y") %></td>
     <td><%= unless checkout.checked_in.nil? then checkout.checked_in.strftime("%m-%d-%Y") end %></td>
     <td><%= unless checkout.worked_with_type.nil? then checkout.worked_with_type.name end %></td>

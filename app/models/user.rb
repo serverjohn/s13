@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessor :password
   before_save :prepare_password
+  has_many :checkouts
 
   validates_presence_of :username
   validates_uniqueness_of :username, :email, :allow_blank => true
@@ -10,6 +11,14 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 4, :allow_blank => true
   validates_presence_of :active, :first_name, :last_name
+
+  validates_presence_of :first_name, :last_name
+  validates_uniqueness_of :first_name, :scope => :last_name
+  
+
+  def name
+    "#{last_name}, #{first_name}"
+  end
 
   # ROLES as a constant.
   ROLES = %w[admin tservant checkout]

@@ -1,16 +1,16 @@
 <p>
   <b>User:</b>
-  <%=h @checkout.user.first_name %> <%=h @checkout.user.last_name %>
+  <%= @checkout.user.first_name %> <%=h @checkout.user.last_name %>
 </p>
 
 <p>
   <b>Terriory:</b>
-  <%=h @checkout.territory.name %>
+  <%= @checkout.territory.name %>
 </p>
 
 <p>
   <b>Publisher:</b>
-  <%= @checkout.publisher.first_name %> <%=h @checkout.publisher.last_name %>
+  <%= @publisher.first_name %> <%= @publisher.last_name %>
 </p>
 
 <p>

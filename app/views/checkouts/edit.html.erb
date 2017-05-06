@@ -15,7 +15,7 @@
   </p>
   <p>
     <%= f.label :publisher_id, "Checked Out To:" %><br>
-    <%= f.select :publisher_id, options_for_select(@publisher_list), :selected => :publisher_id %>
+    <%= f.select :publisher_id, options_for_select(@publisher_list, f.object.publisher_id) %>
   </p>
   <p>
     <%= f.label :checked_out %><br />

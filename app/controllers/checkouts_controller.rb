@@ -17,7 +17,7 @@ class CheckoutsController < ApplicationController
 
     # Check Outs List
     @checkouts = Checkout.all
-    @publisers = Publisher.all
+    @publisers = User.all
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @checkouts }
@@ -28,7 +28,7 @@ class CheckoutsController < ApplicationController
   # GET /checkouts/1.xml
   def show
     @checkout = Checkout.find(params[:id])
-
+    @publisher = User.find(@checkout.publisher_id)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @checkout }
@@ -146,7 +146,7 @@ class CheckoutsController < ApplicationController
   end
 
   def publishers # List Publishers
-    @publishers = Publisher.where(active: "Y")
+    @publishers = User.where(active: "Y")
     @publisher_list = []
     @publishers.each do |publisher|
       @publisher_list << [ "#{publisher.last_name}, #{publisher.first_name}", publisher.id ]
