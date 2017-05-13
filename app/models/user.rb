@@ -16,8 +16,12 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :first_name, :scope => :last_name
   
 
-  def name
+  def name_last_first
     "#{last_name}, #{first_name}"
+  end
+  
+  def name_first_last
+    "#{first_name} #{last_name}"
   end
 
   # ROLES as a constant.
