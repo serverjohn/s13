@@ -6,7 +6,6 @@ class Ability
     if user.role == "admin"
       can :manage, :all
       can :disable, :all
-      can :disable, WorkedWithType
     end
   end
 end
