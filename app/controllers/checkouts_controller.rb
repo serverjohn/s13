@@ -1,10 +1,10 @@
 class CheckoutsController < ApplicationController
-  # GET /checkouts
-  # GET /checkouts.xml
+
   load_and_authorize_resource
 
+  # Set the permited parameters that can be accepted.
   def checkout_params
-    params.require(:checkout).permit(:user_id, :completed_with, :territory_id, :publisher_id, :checked_out, :notes)
+    params.require(:checkout).permit(:user_id, :territory_id, :publisher_id, :territory_type_id, :worked_with_type_id, :checked_out, :checked_in, :completed_with, :notes, :checkin_user_id)
   end
  
   def index
@@ -80,7 +80,14 @@ class CheckoutsController < ApplicationController
   # PUT /checkouts/1
   # PUT /checkouts/1.xml
   def update
-    @checkout = Checkout.find(params[:id])
+    if Checkout.find(params[:id]).checked_in.nil?
+      @checkout = Checkout.find(params[:id])
+      @checkout.checkin_user_id = current_user.id
+    else
+      @checkout = Checkout.find(params[:id])
+    end
+    
+    
 
     respond_to do |format|
       if @checkout.update_attributes(params[:checkout])
@@ -154,22 +161,9 @@ class CheckoutsController < ApplicationController
     @publisher_list = @publisher_list.sort # Used an array instead of hash because hashes don't sort right
   end
 
-  def to_be_checked_in    
-    #@to_be_checked_in = []
-    # Once database is complete, i.e. territory_id and worked_with_id IS NOT NULL, territory id and worked with id checks can be removed.
-    @to_be_checked_in = Checkout.order("checked_out ASC").where("checked_in IS NULL")
-    #to_be_checked_in.each do |c|
-    #  @to_be_checked_in << [ "#{c.territory_type.name} - #{c.territory.name}", c.id ]
-    #end
-    
-    return @to_be_checked_in
+  def checkin
+    # Gather checkouts not checked in.
+    @checkins = Checkout.order("checked_out ASC").where("checked_in IS NULL")
   end
 
 end
-
-# class Array
-# def stable_sort
-      # n = 0
-      # sort_by {|x| n+= 1; [x, n]}
-# end
-# end
