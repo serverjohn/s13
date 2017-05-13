@@ -22,7 +22,10 @@
   <b>Checked in:</b>
   <%= unless @checkout.checked_in.nil? then @checkout.checked_in.strftime("%m-%d-%Y") end %>
 </p>
-
+<p>
+  <strong>Checked in by:</strong>
+  <%= unless @checkout.checked_in.nil? then User.find(@checkout.checkin_user_id).name_first_last end %>
+</p>
 <p>
   <b>Completed with:</b>
   <%= unless @checkout.worked_with_type.nil? then @checkout.worked_with_type.name end %>
