@@ -1,5 +1,7 @@
 S13::Application.routes.draw do
 
+  resources :congregations
+
   get "settings/index"
 
   # Root
@@ -8,7 +10,7 @@ S13::Application.routes.draw do
   # Sign in and logout
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
-  get "checkin" => "checkouts#to_be_checked_in", :as => "checkin"
+  get "checkin" => "checkouts#checkin", :as => "checkin"
 
   # Routes for the disable method in the checkouts, territories, territory_types, users, and worked_with_types controllers.
   get "co_disable" => "checkouts#disable", :as => "co_disable"
