@@ -13,14 +13,14 @@
   <div class="container">
     <div class="right-user">
       <% if logged_in? %>
-        <%=h current_user.username %> | <%= link_to "logout", logout_path %>
+        <%= current_user.first_name %> | <%= link_to "logout", logout_path %>
       <% end %>
     </div>
     <div class="logoHolder"><%= image_tag("logo.png", :class => "logo") %></div>
     
     <div class="nav-bar">
-    	<a class="nav-bar-links" href="/checkouts">CheckedOut</a>
-    	<a class="nav-bar-links" href="/checkouts/new">CheckOut</a>
+    	<a class="nav-bar-links" href="/checkouts/new">Check Out</a>
+    	<a class="nav-bar-links" href="/checkin">Check In</a>
     	<a class="nav-bar-links" href="/settings">Settings</a>
     </div>
     
