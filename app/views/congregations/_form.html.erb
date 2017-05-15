@@ -15,6 +15,15 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+  <div class="field">
+	  <%= f.label :active %><br>
+	  <%= f.radio_button :active, 'Y', :checked => true %> 
+	  <%= label :active_y, 'Yes' %>
+	  <%= f.radio_button :active, 'N' %>
+	  <%= label :contactmethod_n, 'No' %>
+  </div>
+ 
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,7 +1,5 @@
 S13::Application.routes.draw do
 
-  resources :congregations
-
   get "settings/index"
 
   # Root
@@ -28,4 +26,5 @@ S13::Application.routes.draw do
   resources :territory_types
   resources :settings
   resources :worked_with_types
+  resources :congregations
 end

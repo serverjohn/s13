@@ -4,7 +4,7 @@ class CheckoutsController < ApplicationController
 
   # Set the permited parameters that can be accepted.
   def checkout_params
-    params.require(:checkout).permit(:user_id, :territory_id, :publisher_id, :territory_type_id, :worked_with_type_id, :checked_out, :checked_in, :completed_with, :notes, :checkin_user_id)
+    params.require(:checkout).permit(:user_id, :territory_id, :publisher_id, :territory_type_id, :worked_with_type_id, :checked_out, :checked_in, :completed_with, :notes, :checkin_user_id, :congregation_id)
   end
  
   def index

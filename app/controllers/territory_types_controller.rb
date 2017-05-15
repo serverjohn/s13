@@ -2,7 +2,7 @@ class TerritoryTypesController < ApplicationController
   load_and_authorize_resource
 
   def territory_type_params
-    params.require(:territory_type).permit(:name, :active)
+    params.require(:territory_type).permit(:name, :active, :congregation_id)
   end
   
   # GET /territory_types

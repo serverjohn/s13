@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
   before_save :prepare_password
   has_many :checkouts
+  belongs_to :congregation
 
   validates_presence_of :username
   validates_uniqueness_of :username, :email, :allow_blank => true

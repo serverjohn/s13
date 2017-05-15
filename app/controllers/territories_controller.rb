@@ -2,7 +2,7 @@ class TerritoriesController < ApplicationController
   load_and_authorize_resource
 
   def territory_params
-    params.require(:territory).permit(:name, :maps, :description, :notes, :active, :territory_type_id)
+    params.require(:territory).permit(:name, :maps, :description, :notes, :active, :territory_type_id, :congregation_id)
   end
 
   helper_method :sort_column, :sort_direction, :territory_types

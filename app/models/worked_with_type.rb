@@ -1,5 +1,6 @@
 class WorkedWithType < ActiveRecord::Base
-  has_many :checked_outs
+  has_many :checkedouts
+  belongs_to :congregation
   
   validates_presence_of :name
 end
