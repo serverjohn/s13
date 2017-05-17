@@ -51,18 +51,12 @@ class CheckoutsController < ApplicationController
     end
   end
 
-  # GET /checkouts/1/edit
   def edit
     @checkout = Checkout.find(params[:id])
     @publisers = publishers
   end
 
-  # POST /checkouts
-  # POST /checkouts.xml
   def create
-    puts "+++++++++++++++++++"
-    puts params[:checkout].inspect
-    puts "+++++++++++++++++++"
     params[:checkout][:territory_type_id] = Territory.find(params[:checkout][:territory_id]).territory_type_id
     @checkout = Checkout.new(params[:checkout])
 
@@ -77,8 +71,6 @@ class CheckoutsController < ApplicationController
     end
   end
 
-  # PUT /checkouts/1
-  # PUT /checkouts/1.xml
   def update
     if Checkout.find(params[:id]).checked_in.nil?
       @checkout = Checkout.find(params[:id])
