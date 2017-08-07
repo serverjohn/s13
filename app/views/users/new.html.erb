@@ -1,9 +1,14 @@
-<% title "Sign up" %>
-
-<p>Already have an account? <%= link_to "Log in", login_path %>.</p>
-
+<% title "Create User" %>
+<h1>New User</h1>
 <%= form_for @user do |f| %>
   <%= render "shared/error_messages", :target => @user %>
+  <p>
+  	<% if current_user.role == "admin" %>
+  		<%= f.select :congregation_id, options_for_select(@congregations) %>
+  	<% else %>
+  	  <%= current_user.congregation.name %>
+  	<% end %>
+  </p>
   <p>
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
@@ -11,10 +16,6 @@
   <p>
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
-  </p>
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
   </p>
   <p>
     <%= f.label :email, "Email Address" %><br />
@@ -55,5 +56,5 @@
     <%= f.label :notes %><br />
     <%= f.text_field :notes %>
   </p>
-  <p><%= f.submit "Sign up" %></p>
+  <p><%= f.submit "Create" %></p>
 <% end %>

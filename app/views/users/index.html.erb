@@ -1,8 +1,7 @@
-<h1>User List</h1>
+<h1>Users</h1>
 
 <table>
   <tr>
-    <th>User name</th>
     <th>First name</th>
     <th>Last name</th>
     <th>Email</th>
@@ -16,7 +15,6 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.username %></td>
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
     <td><%= user.email %></td>
@@ -28,7 +26,7 @@
     <td><% if user.active == "Y" %>Yes<% else %>No<% end %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Disable', ur_disable_path(user), :data => {:confirm => "Are you sure you want to disable #{user.username.titleize}?"} %></td>
+    <td><%= link_to 'Disable', ur_disable_path(user), :data => {:confirm => "Are you sure you want to disable #{user.first_name.titleize}?"} %></td>
   </tr>
 <% end %>
 </table>

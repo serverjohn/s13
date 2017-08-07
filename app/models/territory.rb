@@ -4,6 +4,6 @@ class Territory < ActiveRecord::Base
   has_many :checkouts
   
   
-  validates_presence_of :territory_type_id, :name, :active
+  validates_presence_of :territory_type_id, :name, :active, :congregation_id, :active
   validates_uniqueness_of :name, :maps
 end

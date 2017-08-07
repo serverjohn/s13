@@ -1,62 +1,54 @@
-<h1>Editing checkout</h1>
+<h1>Check Out</h1>
 
 <%= form_for(@checkout) do |f| %>
   <%= render "shared/error_messages", :target => @checkout %>
 
-  <p>
-	Territory Department Member:<br>
-    <%= @checkout.user.first_name %> <%= @checkout.user.last_name %>
-    <%= f.hidden_field :user_id %>
-  </p>
-  <p>
-  	Territory:<br>
-    <%= @checkout.territory.name %>
-    <%= f.hidden_field :territory_id %>
-  </p>
-  <p>
-    <%= f.label :publisher_id, "Checked Out To:" %><br>
-    <%= f.select :publisher_id, options_for_select(@publisher_list, f.object.publisher_id) %>
-  </p>
-  <p>
-    <%= f.label :checked_out %><br />
+ 	<h2>Territory: <%= @checkout.territory.name %></h2>
+
+  <%= f.label :publisher_id, "Checked Out To", :class => "form-label"  %>
+  <div class="form-info"> 
+    <%= f.select :publisher_id, @publishers %>
+  </div>
+   
+  <%= f.label :checked_in, "Checked In Date", :class => "form-label"  %>
+  <div class="form-info">
+    <% if @checkout.checked_in %>
+      <%= f.date_select :checked_in, :start_year => Time.now.year, :end_year => Time.now.year - 2 %>
+    <% else %>
+      <%= f.date_select :checked_in, :start_year => Time.now.year, :end_year => Time.now.year - 2 %>
+    <% end %>
+  </div>
+
+  <%= f.label :checked_out, "Checked Out Date", :class => "form-label"  %>
+  <div class="form-info">
     <%= f.date_select :checked_out, :start_year => Time.now.year, :end_year => Time.now.year - 2, :disabled => true %>
-  </p>
-  
-  <% if @checkout.checked_in %>
-	  <p>
-	    <%= f.label :checked_in %><br />
-	    <%= f.date_select :checked_in, :start_year => Time.now.year, :end_year => Time.now.year - 2 %>
-	  </p>
-	<% else %>
-	  <p>
-	    <%= f.label :checked_in %><br />
-	    <%= f.date_select :checked_in, :start_year => Time.now.year, :end_year => Time.now.year - 2 %>
-	  </p>
-	<% end %>
-  <p>
-  	<!-- Checks if completed_with has already been set. If not default to id one regular offer -->
-	<% if @checkout.completed_with? %>
-	  	<%= f.label :completed_with %><br />
-		<% for wwt in WorkedWithType.all %>
-			  <%= f.radio_button :completed_with, wwt.id, wwt.id == @checkout.completed_with.to_i ? {:checked => true} : {:checked => false} %>
-			  <%= wwt.name.titleize %>
-		<% end %>		
-	<% else %>
-	  	<%= f.label :completed_with %><br />
-		<% for wwt in WorkedWithType.all %>
-			  <%= f.radio_button :completed_with, wwt.id, wwt.id == 1 ? {:checked => true} : {:checked => false} %>
-			  <%= wwt.name.titleize %>
-		<% end %>
-	<% end %>
-  </p>
-  <p>
-    <%= f.label :notes %><br />
-    <%= f.text_field :notes %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+  </div>
+
+  <%= f.label :completed_with, "Completed With", :class => "form-label" %>
+  <div class="form-info">
+      <!-- Checks if completed_with has already been set. If not default to id one regular offer -->
+    	<% if @checkout.completed_with? %>
+    		<% for wwt in WorkedWithType.all %>
+    			  <%= f.radio_button :completed_with, wwt.id, wwt.id == @checkout.completed_with.to_i ? {:checked => true} : {:checked => false} %>
+    			  <%= wwt.name.titleize %>
+    		<% end %>		
+    	<% else %>
+    		<% for wwt in WorkedWithType.all %>
+    			  <%= f.radio_button :completed_with, wwt.id, wwt.id == 1 ? {:checked => true} : {:checked => false} %>
+    			  <%= wwt.name.titleize %>
+    		<% end %>
+    	<% end %>
+  </div>
+ 
+  <%= f.label :notes, :class => "form-label"  %>
+  <div class="form-info">
+    <%= f.text_field :notes, :class => "form-notes" %>
+  </div>
+    
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :territory_id %>
+
+  <div class="form-button-container center">
+    <%= f.submit 'Save', :class => "form-button" %>
+  </div>
 <% end %>
-<%= @checkout.inspect %> <br><br>
-<%= link_to 'Show', @checkout %> |
-<%= link_to 'Back', checkouts_path %>

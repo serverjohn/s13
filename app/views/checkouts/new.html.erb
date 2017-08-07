@@ -1,5 +1,5 @@
-<h1>Checkout</h1>
-
+<h1>Check Out</h1>
+<div class="form" style="background: pink; padding: 10px;">
 <%= form_for(@checkout) do |f| %>
   <%= render "shared/error_messages", :target => @checkout %>
   
@@ -27,5 +27,5 @@
     <%= f.submit 'Checkout Territory' %>
   </p>
 <% end %>
-
+</div>
 <%= link_to 'Back', checkouts_path %>

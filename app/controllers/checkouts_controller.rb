@@ -53,7 +53,7 @@ class CheckoutsController < ApplicationController
 
   def edit
     @checkout = Checkout.find(params[:id])
-    @publisers = publishers
+    @publishers = publishers
   end
 
   def create

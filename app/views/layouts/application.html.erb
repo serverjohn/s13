@@ -4,29 +4,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>Territories: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'application' %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application", "respond" %>
 </head>
 <body>
-  <div class="background-bar"></div>
   <div class="container">
-    <div class="right-user">
-      <% if logged_in? %>
-        <%= current_user.first_name %> | <%= link_to "logout", logout_path %>
-      <% end %>
+    <div class="header">
+      <div class="rightUser">
+        <% if logged_in? %>
+          <a href="/users/<%=current_user.id%>"><%= current_user.first_name %></a> | <%= link_to "logout", logout_path %>
+        <% end %>
+      </div>
+      <div class="clearFix"></div>
+      <div class="topnavBackground">
+        <div class="topnav" id="myTopnav">
+          <%= link_to "s-13", checkouts_path, :class => "topnavS13" %>
+          <a href="/checkouts/new">Check Out</a>
+          <a href="/checkin">Check In</a>
+          <a href="/settings">Settings</a>
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+      </div>
     </div>
-    <div class="logoHolder"><%= image_tag("logo.png", :class => "logo") %></div>
-    
-    <div class="nav-bar">
-    	<a class="nav-bar-links" href="/checkouts/new">Check Out</a>
-    	<a class="nav-bar-links" href="/checkin">Check In</a>
-    	<a class="nav-bar-links" href="/settings">Settings</a>
-    </div>
-    
     <div class="clearFix"></div>
     
-    <div class="main">
+    <div class="content">
       <!-- Errors etc. territories -->
       <!-- Errors etc. checkouts publishers users -->
       <% flash.each do |name, msg| %>

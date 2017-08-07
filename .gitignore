@@ -10,3 +10,4 @@ vendor/bundle
 public/.htaccess
 public/uploads
 config/database.yml
+config/database.yml

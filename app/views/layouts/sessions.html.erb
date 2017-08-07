@@ -10,8 +10,8 @@
 <body>
   <div class="loginContainer center">
     <% if logged_in? %>
-      <div class="right-user">
-        <%=h current_user.username %> | <%= link_to "logout", logout_path %>
+      <div class="rightUser">
+        <%=h current_user.first_name %> | <%= link_to "logout", logout_path %>
       </div>
     <% end %>
     <!-- Errors etc. -->

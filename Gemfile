@@ -9,8 +9,9 @@ gem 'cancan'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store' 
 gem 'jquery-rails'
 
-group :development, :test do
-  gem "mocha"
-  gem "rspec-rails"
-  gem "factory_girl_rails"
+gem "rspec-rails", :group => [:test, :development]
+group :test do
+  gem "factory_girl_rails", :require => false
+  gem "capybara"
+  gem "guard-rspec"
 end

@@ -27,4 +27,5 @@ S13::Application.routes.draw do
   resources :settings
   resources :worked_with_types
   resources :congregations
+  resources :password_resets
 end

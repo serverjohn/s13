@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203222156) do
+ActiveRecord::Schema.define(version: 20170521031632) do
 
   create_table "checkouts", force: true do |t|
     t.integer  "user_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20161203222156) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "checkin_user_id"
+    t.integer  "congregation_id"
   end
 
   create_table "checkouts_publishers", id: false, force: true do |t|
@@ -33,6 +34,13 @@ ActiveRecord::Schema.define(version: 20161203222156) do
     t.integer  "publisher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "congregations", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "active"
   end
 
   create_table "publishers", force: true do |t|
@@ -44,7 +52,7 @@ ActiveRecord::Schema.define(version: 20161203222156) do
     t.datetime "updated_at"
     t.string   "phone_number"
     t.string   "textmessage"
-    t.string   "active"
+    t.string   "active",       limit: 1, default: "y"
   end
 
   create_table "sessions", force: true do |t|
@@ -66,11 +74,13 @@ ActiveRecord::Schema.define(version: 20161203222156) do
     t.datetime "updated_at"
     t.string   "active"
     t.string   "territory_type_id"
+    t.integer  "congregation_id"
   end
 
   create_table "territory_types", force: true do |t|
-    t.string "name"
-    t.string "active"
+    t.string  "name"
+    t.string  "active"
+    t.integer "congregation_id"
   end
 
   create_table "users", force: true do |t|
@@ -83,11 +93,20 @@ ActiveRecord::Schema.define(version: 20161203222156) do
     t.string   "role"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "active"
+    t.integer  "phone_number"
+    t.string   "notes"
+    t.string   "text_message"
+    t.string   "cell_carrier"
+    t.integer  "congregation_id"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   create_table "worked_with_types", force: true do |t|
-    t.string "name",   null: false
-    t.string "active", null: false
+    t.string  "name",            null: false
+    t.string  "active",          null: false
+    t.integer "congregation_id"
   end
 
 end

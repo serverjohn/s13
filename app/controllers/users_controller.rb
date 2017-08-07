@@ -2,11 +2,12 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :password_confirmation, :role, :first_name, :last_name, :active, :phone_number, :notes, :text_message, :cell_carrier, :congregation_id)
+    params.require(:user).permit(:email, :password, :password_confirmation, :role, :first_name, :last_name, :active, :phone_number, :notes, :text_message, :cell_carrier, :congregation_id)
   end
 
   def new
     @user = User.new
+    @congregations = congregations
   end
 
   def edit
@@ -15,10 +16,14 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    
+    unless current_user.role == "admin" # Only allows admins to change a congregation.
+      @user.congregation = current_user.congregation
+    end
+    
     if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "Thank you for signing up! You are now logged in."
-      redirect_to root_url
+      flash[:notice] = "New user created."
+      redirect_to users_url
     else
       render :action => 'new'
     end
@@ -47,15 +52,12 @@ class UsersController < ApplicationController
         days_co = hist.checked_out.day.to_f / (Time.days_in_month hist.checked_out.month, hist.checked_out.year)
         days_ci = hist.checked_in.day.to_f / (Time.days_in_month hist.checked_in.month) 
         
-        puts "#{months.inspect}"
-        puts "#{days_co.inspect}"
-        puts "#{days_ci.inspect}"
         @user_history[":#{hist.id}"] = {
           :name => "#{hist.territory.name}",
           :age => "#{months + days_co + days_ci}",
           :checkout => "#{hist.checked_out.strftime("%m-%d-%Y")}",
           :checkin => "#{hist.checked_in.strftime("%m-%d-%Y")}",
-          :workedwith => "#{hist.worked_with_type.name}"
+          :workedwith => unless hist.worked_with_type.nil? then hist.worked_with_type.name end
         }
       end
     end
@@ -88,3 +90,12 @@ class UsersController < ApplicationController
     end
   end
 end
+
+  def congregations # List Congregations
+    @congregations = Congregation.where(active: "Y")
+    @congregation_list = []
+    @congregations.each do |congregation|
+      @congregation_list << [ "#{congregation.name}", congregation.id ]
+    end
+    @congregation_list = @congregation_list.sort # Used an array instead of hash because hashes do not sort right
+  end

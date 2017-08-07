@@ -1,261 +1,312 @@
-@media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    .container {
-    	width: 90%;
-    	min-width: 400px;
-    	background-color:#B054BF;
-    	border:hidden;
-    }
-}
+/*
+CSS Table of Contents
 
-a img {
-  border: none;
-}
+* Mobile Phones (400px)
+	* .container
+		* .content
+		* .footer
+		* .header
+			* .topnav a:not()
+			* .topnav a
+			* .topnav a.icon
+			* .topnav.responsive
+			* .topnav.responsive a
+			* .topnav.responsive a.icon
 
-a {
-  color: #0000FF;
-}
+* Tablet (401px-768px)
+	* .container
+		* .content
+		* .footer
+		* .header
+* Desktop (769+)
+	* .container
+		* .content
+			a img 
+			a 
+			.clear 
+			h1 
+			h2 
+			h3 
+			.form-label 
+			.form-info 
+			.form-button-container 
+			.form-button 
+			.form-button:hover 
+			.form-notes 
+			#flash_notice, #flash_error, #flash_alert 
+			#flash_notice 
+			#flash_error, #flash_alert 
+			.fieldWithErrors 
+			.error_messages 
+			.error_messages h2 
+			.error_messages p 
+			.error_messages ul 
+			table.pretty 
+			.pretty td, .pretty th 
+			.pretty .price 
+			.pretty th .current 
+			.pretty th .asc 
+			.pretty th .desc 
+			#button_green 
+			#button_yellow 
+			#button_red
+			body 
+			a:link 
+			a:visited 
+			a:hover 
+			a:active 
+			.clearFix 
+			.header 
+			.content 
+			.footer 
+			.container 
+			.right-user 
+			.login 
+			.loginContainer 
+			.loginContainerForm 
+			.loginLogo 	
+			.logo 
+			.logoHolder 
+			.topnav 
+			.topnav a 
+			.topnav a:hover 
+			.topnav .icon 
+			.heading 
+			.paragraph-indent 
+			.center 
+			.checkoutNew 
+			.checkoutNewElements
+		
+		* .footer
+		* .header
+			* .topnav
 
-.clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
-}
+*/
 
-#container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
-}
 
-#flash_notice, #flash_error, #flash_alert {
-  padding: 5px 8px;
-  margin: 10px 0;
-}
 
-#flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
-}
-
-#flash_error, #flash_alert {
-  background-color: #FCC;
-  border: solid 1px #C66;
-}
-
-.fieldWithErrors {
-  display: inline;
-}
-
-.error_messages {
-  width: 400px;
-  border: 2px solid #CF0000;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  font-size: 12px;
-}
-
-.error_messages h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 10px;
-  font-size: 12px;
-  margin: 0;
-  background-color: #c00;
-  color: #fff;
-}
-
-.error_messages p {
-  margin: 8px 10px;
-}
-
-.error_messages ul {
-  margin: 0;
-}
-
-table.pretty {
-  border-collapse: collapse;
-}
-
-.pretty td, .pretty th {
-  padding: 4px 10px;
-  border: solid 1px #AAA;
-}
-
-.pretty .price {
-  text-align: right;
-}
-
-.pretty th .current {
-  padding-right: 12px;
-  background-repeat: no-repeat;
-  background-position: right center;
-}
-
-.pretty th .asc {
-  background-image: url(/images/up_arrow.gif);
-}
-
-.pretty th .desc {
-  background-image: url(/images/down_arrow.gif);
-}
-
-#button_green {
-	background-color: #8AC007;
-	padding: 2px 7px;
-}
-#button_yellow {
-	background-color: #ffcc33;
-	padding: 2px 7px;
-}
-#button_red {
-	background-color: #ff6633;
-	padding: 2px 7px;
-}
-
-/* --------------------------------------------------- */
-
-body {
-font-family:Arial, Helvetica, sans-serif;
-padding:0;
-margin:0;
-}
-
-a:link {text-decoration:none;}
-a:visited {text-decoration:none;}
-a:hover {text-decoration:underline;}
-a:active {text-decoration:underline;}
-
-.background-bar {
-position:absolute;
-top:52.5px;
-width:100%;
-height:30px;
-background-color:#91B22B;
-}
-
-.clearFix {
-	clear: both;
+/* Mobile Phones */
+	@media only screen and (max-width: 400px) {
+		a:active {text-decoration:underline;}
+		a:hover {text-decoration:underline;}
+		a img { border: none; }
+		a:link {text-decoration:none;}
+		a:visited {text-decoration:none;}
+		body { font-family: Helvetica, Arial, sans-serif; font-size: 1em; padding:0; margin:0; }
+		h1 { background: #D0D0D0; padding: 20px; }
+		h2 { padding: 15px 20px; }
+		h3 { background: #E8E8E8; padding: 15px 20px; }
+		.center { margin-left:auto; margin-right:auto; }
+	    .container { top:0px; right:0px; left:0px; margin-left:auto; margin-right:auto; width:100%; }
+	    	.clearFix { clear: both; }
+	    	/* Add a black background color to the top navigation */
+	    	.content { width: 100%; }
+					.form-button { width: 100%; font-size: 1em; color: #FFFFFF; background: #2B478F; padding: 2%; border-radius: 8px; border-color: #2B478F; border-width: 2px; border-style: outset; margin-bottom: 30px; }
+					.form-button-container { width: 50%; }
+					.form-button:hover { background-color: #1d3162; border-width: 2px; border-style: inset; }
+	    			.form-label { float: left; width: 95.5%; padding: 1.5% 1.5% 1.5% 3%; background: #E8E8E8; }
+					.form-info { float: left; width: 95.5%; padding: 1.5% 1.5% 1.5% 3%; margin-bottom: 20px; }
+					.form-notes { width: 95.5%; }
+	    	.footer { width: 100%; }
+	    	.header { width: 100%; }
+	    		.rightUser { margin: 10px 10px 10px 0; float: right; }
+	    		.topnav { overflow: hidden; }
+	    		/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+						/* Style the links inside the navigation bar */
+				.topnav a {
+				    float: left;
+				    display: block;
+				    color: #f2f2f2;
+				    text-align: center;
+				    padding: 14px 16px;
+				    text-decoration: none;
+				    font-size: 17px;
+				}
+				/* Change the color of links on hover */
+				.topnav a:hover { background-color: #ddd; color: black; }
+				.topnav a:not(:first-child) {display: none;}
+				.topnav a.icon {
+					float: right;
+					display: block;
+					height: 20px;
+					border-left: 1px solid #FFFFFF;
+				}
+				.topnavBackground {	background-color: #2B478F; width: 100%; }
+				/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+				.topnav.responsive a {float: none; display: block; text-align: left; width: 100%; }
+			  	.topnav.responsive { position: relative; }
+				.topnav.responsive a.icon {
+			    	position: absolute;
+			    	right: 0;
+			    	top: 0;
+			    }
+			    .topnavS13 { padding: 14px 16px; }
 	}
 
-.container {
-top:0px;
-right:0px;
-left:0px;
-margin-left:auto;
-margin-right:auto;
-width:90%;
-border: black solid 1px;
-max-width:980px;
-}
-
-.right-user {
-	position:absolute;
-	top:19.5px;
-	right:28.5px;
-	color:#91B22B;
+/* Tablets */
+	@media only screen and (min-width: 401px) {
+	    /* For mobile phones: */
+	    .container { top:0px; right:0px; left:0px; margin-left:auto; margin-right:auto; width:100%; }
+	    	.content { width: 100%; }
+	    	.footer { width: 100%; }
+			.header { width: 100%; }
+				.rightUser { margin: 10px 10px 10px 0; float: right; }
 	}
 
-.login {
-	position: relative;
-	margin-top:50px;
-	height:270px;
-	margin-left: auto;
-	margin-right: auto;
-	width: 330px;
-	background-color: #91B22B;
-}
+	@media only screen and (min-width: 767px) {
+/* Desktop Computers */
 
-.loginContainer {
-	position:absolute;
-	top:0;
-	left:0;
-	width: 100%;
-	height: 100%;
-	}
 
-.loginContainerForm {
-	position:relative;
-	width: 157px;	
-}
 
-.loginLogo {
-	position: relative;
-	padding-top: 15px;
-	width:101px;
-	}
-	
-.logo { 
-	position:relative;
-	float:left;
-	margin: 0 15px;
-	}
+		#flash_notice, #flash_error, #flash_alert {
+		  padding: 5px 8px;
+		  margin: 10px 0;
+		}
 
-.logoHolder { 
-	position:relative;
-	float:left;
-	margin-top:21px;
-	margin-left:23px;
-	width:137px;
-	background-color:#FFF;
-	}
+		#flash_notice {
+		  background-color: #CFC;
+		  border: solid 1px #6C6;
+		}
 
-.nav-bar { 
-	position:relative;
-	float:left;
-	margin-top:52.5px;
-	height:30px;
-	}
+		#flash_error, #flash_alert {
+		  background-color: #FCC;
+		  border: solid 1px #C66;
+		}
 
-.nav-bar-links {
-	position:relative;
-	float:left;
-	padding: 6px 13px;
-	height: 100%;
-	color:white;
-	border-right:#FFFFFF solid 1px;
-	}
+		.error_messages {
+		  width: 400px;
+		  border: 2px solid #CF0000;
+		  padding: 0px;
+		  padding-bottom: 12px;
+		  margin-bottom: 20px;
+		  background-color: #f0f0f0;
+		  font-size: 12px;
+		}
 
-.main {
-position:relative;
-float:left;
-width:100%;
-background-color:#FFF;
-}
+		.error_messages h2 {
+		  text-align: left;
+		  font-weight: bold;
+		  padding: 5px 10px;
+		  font-size: 12px;
+		  margin: 0;
+		  background-color: #c00;
+		  color: #fff;
+		}
 
-.heading {
-font-size:250%;
-}
+		.error_messages p {
+		  margin: 8px 10px;
+		}
 
-.paragraph-indent {
-padding-left:30px;
-line-height:150%;
-}
+		.error_messages ul {
+		  margin: 0;
+		}
 
-.center {
-margin-left:auto;
-margin-right:auto;
-}
-.header {
- 	width:100%;
- 	margin: 10px 0 0 0;
- 	padding: 0 0 0 5px;
- 	background-color:#B054BF;
- 	font-size:20pt;
- 	color:white;
- }
+		table.pretty {
+		  border-collapse: collapse;
+		}
 
-.checkoutNew {
-	width:100%;
-}
+		.pretty td, .pretty th {
+		  padding: 4px 10px;
+		  border: solid 1px #AAA;
+		}
 
-.checkoutNewElements {
-	position: relative;
-	float:left;
-	margin: 10px 0 0 10px;
+		.pretty .price {
+		  text-align: right;
+		}
+
+		.pretty th .current {
+		  padding-right: 12px;
+		  background-repeat: no-repeat;
+		  background-position: right center;
+		}
+
+		.pretty th .asc {
+		  background-image: url(/images/up_arrow.gif);
+		}
+
+		.pretty th .desc {
+		  background-image: url(/images/down_arrow.gif);
+		}
+
+
+		/* --------------------------------------------------- */
+
+
+
+
+		.content {
+			margin: auto;
+			width:90%;
+			background-color:#FFF;
+		}
+
+		.footer { width: 100%; }
+
+		.header { width: 100%; }
+		.rightUser { margin: 10px 10px 10px 0; float: right; }
+
+
+
+		.login {
+			position: relative;
+			margin-top:50px;
+			height:270px;
+			margin-left: auto;
+			margin-right: auto;
+			width: 330px;
+			background-color: #91B22B;
+		}
+
+		.loginContainer {
+			position:absolute;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			}
+
+		.loginContainerForm {
+			position:relative;
+			width: 157px;	
+		}
+
+		.loginLogo {
+			position: relative;
+			padding-top: 15px;
+			width:101px;
+			}
+
+		/* Add a black background color to the top navigation */
+		.topnavBackground {
+			background-color: #2B478F;
+			width: 100%;
+		}
+		.topnav {
+			width: 90%;
+			margin: auto;
+		    overflow: hidden;
+		}
+
+		/* Style the links inside the navigation bar */
+		.topnav a {
+		    float: left;
+		    display: block;
+		    color: #f2f2f2;
+		    text-align: center;
+		    padding: 14px 16px;
+		    text-decoration: none;
+		    font-size: 17px;
+		    border-right: 1px solid #FFFFFF;
+		}
+		/* Change the color of links on hover */
+		.topnav a:hover {
+		    background-color: #ddd;
+		    color: black;
+		}
+		/* Hide the link that should open and close the topnav on small screens */
+		.topnav .icon { display: none; }
+
+
+		
+
 }

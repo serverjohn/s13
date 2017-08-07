@@ -6,5 +6,5 @@ class Checkout < ActiveRecord::Base
   belongs_to :worked_with_type
   belongs_to :congregation
   
-  validates_presence_of :user_id, :territory_id, :checked_out
+  validates_presence_of :user_id, :territory_id, :checked_out, :congregation_id
 end

@@ -2,11 +2,6 @@
 
 <%= form_for(@user) do |f| %>
   <%= render "shared/error_messages", :target => @user %>
-
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
   <p>
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
@@ -47,6 +42,9 @@
   <%= label :contactmethod_n, 'No' %>
   </p>
   <p>
+    <%= f.label :congregation_id %><br />
+    <%= f.text_field :congregation_id %>
+  </p> 	
   <p>
     <%= f.label :notes %><br />
     <%= f.text_field :notes %>

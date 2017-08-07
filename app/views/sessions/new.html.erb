@@ -3,12 +3,13 @@
 <div class="loginContainerForm center">
 <%= form_tag sessions_path do %>
   <p>
-    <%= label_tag :login, "Username" %><br />
+    <%= label_tag :login, "Email" %><br>
     <%= text_field_tag :login, params[:login] %>
   </p>
   <p>
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
+    <%= label_tag :password %><br>
+    <%= password_field_tag :password %><br>
+    <%= link_to "forgot password?", new_password_reset_path %>
   </p>
   <p class="center"><%= submit_tag "Log in" %></p>
 <% end %>
