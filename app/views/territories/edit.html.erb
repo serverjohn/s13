@@ -2,7 +2,7 @@
 
 <%= form_for(@territory) do |f| %>
   <%= render "shared/error_messages", :target => @territory %>
-
+  <p><%= @territory.congregation_id %></p>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>

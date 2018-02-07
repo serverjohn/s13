@@ -1,29 +1,25 @@
 <h1>Check Outs</h1>
-
-
 <table>
-  <tr>
-    <th>Terriory</th>
-    <th>Checked Out To</th>
-    <th>Checked out</th>
-    <th>Checked in</th>
-    <th>Completed with</th>
-    <th>Notes</th>
-    <th>Assigned By</th>
-  </tr>
-
-<% @checkouts.each do |checkout| %>
-  <tr>
-    <td><%= checkout.territory.name %></td>
-    <td><%= User.find(checkout.publisher_id).last_name %>, <%= User.find(checkout.publisher_id).first_name %></td>
-    <td><%= checkout.checked_out.strftime("%m-%d-%Y") %></td>
-    <td><%= unless checkout.checked_in.nil? then checkout.checked_in.strftime("%m-%d-%Y") end %></td>
-    <td><%= unless checkout.worked_with_type.nil? then checkout.worked_with_type.name end %></td>
-    <td><%= checkout.notes %></td>
-    <td><%= checkout.user.name_first_last %></td>
-    <td><%= link_to 'Show', checkout %></td>
-    <td><%= if checkout.checked_in == nil then link_to 'Edit/Check', edit_checkout_path(checkout) else link_to 'Edit', edit_checkout_path(checkout) end     %></td>
-    <td><%= link_to 'Destroy', checkout, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+    <thead>
+        <tr>
+            <th scope="col">Terriory</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">Checked out</th>
+            <th scope="col">Checked in</th>
+            <th scope="col">Assigned By</th>
+            <th scope="col">Action</th>
+        </tr>  
+    </thead>
+    <tbody>
+    <% @checkouts.each do |checkout| %>
+      <tr>
+        <td><%= checkout.territory.name %></td>
+        <td><%= checkout.user.last_name %>, <%= checkout.user.first_name %></td>
+        <td><%= checkout.checked_out.strftime("%m-%d-%Y") %></td>
+        <td><%= unless checkout.checked_in.nil? then checkout.checked_in.strftime("%m-%d-%Y") end %></td>
+        <td><%= checkout.user.name_first_last %></td>
+        <td><%= link_to 'Show', checkout %>, <%= link_to 'Edit', edit_checkout_path(checkout) %></td>
+      </tr>
+    <% end %>
+    </tbody>
 </table>

@@ -34,9 +34,30 @@ class CongregationsController < ApplicationController
     end
   end
 
-  def destroy
-    @congregation.destroy
-    redirect_to congregations_url, notice: 'Congregation was successfully destroyed.'
+  def disable
+    @congregation = Congregation.find(params[:format])
+    if @congregation.active == "Y" 
+      if @congregation.update(active: "N")
+        redirect_to(congregations_path, :notice => "#{@congregation.name.titleize} was disabled.")
+      else
+        render :action => "edit"
+      end
+    else
+      redirect_to(congregations_path, :alert => "#{@congregation.name.titleize} has already been disabled.")
+    end
+  end
+
+  def enable
+    @congregation = Congregation.find(params[:format])
+    if @congregation.active == "N" 
+      if @congregation.update(active: "Y")
+        redirect_to(congregations_path, :notice => "#{@congregation.name.titleize} was enabled.")
+      else
+        render :action => "edit"
+      end
+    else
+      redirect_to(congregations_path, :alert => "#{@congregation.name.titleize} is already enabled.")
+    end
   end
 
   private

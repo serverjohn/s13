@@ -1,12 +1,8 @@
-<h1>Territory Type:</h1>
-<p>
-  <b>Name:</b>
-  <%= @territory_type.name %>
-</p>
+<h1>Territory Type</h1>
+<div class="form">
+	<h2>Name</h2>
+	<div><%= @territory_type.name %></div>
 
-<p>
-  <b>Active:</b>
-  <% if @territory_type.active == "Y" %>Yes<% else %>No<% end %>
-</p>
-<%= link_to 'Edit', edit_territory_type_path(@territory_type) %> |
-<%= link_to 'Back', territory_types_path %>
+	<h2>Active</h2>
+	<div><% if @territory_type.active == "Y" %>Yes<% else %>No<% end %></div>
+</div>

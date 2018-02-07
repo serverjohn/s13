@@ -12,37 +12,40 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="rightUser">
-        <% if logged_in? %>
-          <a href="/users/<%=current_user.id%>"><%= current_user.first_name %></a> | <%= link_to "logout", logout_path %>
-        <% end %>
-      </div>
       <div class="clearFix"></div>
+
       <div class="topnavBackground">
+        <div class="topnav rightUser">
+
+        </div>
         <div class="topnav" id="myTopnav">
           <%= link_to "s-13", checkouts_path, :class => "topnavS13" %>
           <a href="/checkouts/new">Check Out</a>
-          <a href="/checkin">Check In</a>
+          <a href="/check_in">Check In</a>
           <a href="/settings">Settings</a>
+          <% if logged_in? %>
+            <a class="rightUser" id="rightUserNoBorder" href="/users/<%=current_user.id%>">My Account</a>
+            <%= link_to "Logout", logout_path, :class => "rightUser" %></a>
+          <% end %>
           <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
         </div>
       </div>
     </div>
     <div class="clearFix"></div>
     
-    <div class="content">
+    <div class="contentContainer">
       <!-- Errors etc. territories -->
       <!-- Errors etc. checkouts publishers users -->
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
-      
-      
-      <%= yield %>
-
+      <div class="content">       
+        <%= yield %>
+      </div>
     </div>
+    <div class="congregation_name_outer"><div class="congregation_name_inner">Congregation: <%= current_user.congregation.name %></div></div>
+    <footer><div class="footer_inner">I should really put something here...</div></footer>
   </div>
-
 </body>
 </html>
 </html>

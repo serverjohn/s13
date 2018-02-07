@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
+<h1>Congregation</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @congregation.name %>
-</p>
-
-<%= link_to 'Edit', edit_congregation_path(@congregation) %> |
-<%= link_to 'Back', congregations_path %>
+<div class="form">
+  <h2>Name</h2>
+  <div><%= @congregation.name %></div>
+	<h2>Active</h2>
+	<div><% if @congregation.active == "Y" %>Yes<% else %>No<% end %></div>
+</div>

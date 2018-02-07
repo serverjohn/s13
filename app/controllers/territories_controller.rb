@@ -8,13 +8,7 @@ class TerritoriesController < ApplicationController
   helper_method :sort_column, :sort_direction, :territory_types
 
   # List territories
-  def index
-#    if params[:search]
-#      @territories = Territory.where("name LIKE ?", params[:search]).paginate(:per_page => 10, :page => params[:page])
-#    else
-#      @territories = Territory.all(:order => sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
-#    end
-    
+  def index 
     @territory_types = TerritoryType.all
 
     respond_to do |format|
@@ -59,13 +53,12 @@ class TerritoriesController < ApplicationController
     end
 
     @territory = Territory.new(params[:territory])
-    respond_to do |format|
-     if @territory.save
-      format.html { redirect_to(@territory, :notice => 'Territory was successfully created.') }
-      else
-       render :action => 'new'
-     end
-   end
+    
+    if @territory.save
+      redirect_to @territory, notice: 'Territory was successfully created.'
+    else
+     render action: 'new'
+    end
   end
    
   # Update territory
@@ -95,7 +88,20 @@ class TerritoriesController < ApplicationController
       redirect_to(territories_path, :alert => "#{@territory.name.titleize} has already been disabled.")
     end
   end
-  
+
+  def enable
+    @territory = Territory.find(params[:format])
+    if @territory.active == "N" 
+      if @territory.update(active: "Y")
+        redirect_to(territories_path, :notice => "#{@territory.name.titleize} was enabled.")
+      else
+        render :action => "edit"
+      end
+    else
+      redirect_to(territories_path, :alert => "#{@territory.name.titleize} is already enabled.")
+    end
+  end
+
   # Gather Territory Type names and return them.
   def territory_types 
     territory_types = []

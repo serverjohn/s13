@@ -8,7 +8,7 @@ class TerritoryTypesController < ApplicationController
   # GET /territory_types
   # GET /territory_types.xml
   def index
-    @territory_type = TerritoryType.all
+    @territory_type = TerritoryType.where(congregation_id: "#{current_user.congregation_id}" )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -85,5 +85,18 @@ class TerritoryTypesController < ApplicationController
       redirect_to(territory_types_path, :alert => "#{@territory_type.name.titleize} has already been disabled.")
     end
   end
-  
+
+  def enable
+    @territory_type = TerritoryType.find(params[:format])
+    if @territory_type.active == "N" 
+      if @territory_type.update(active: "Y")
+        redirect_to(territory_types_path, :notice => "#{@territory_type.name.titleize} was enabled.")
+      else
+        render :action => "edit"
+      end
+    else
+      redirect_to(territory_types_path, :alert => "#{@territory_type.name.titleize} is already enabled.")
+    end
+  end
+
 end

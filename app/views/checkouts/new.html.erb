@@ -1,31 +1,31 @@
-<h1>Check Out</h1>
-<div class="form" style="background: pink; padding: 10px;">
+<h1>New Check Out</h1>
+<div class="form">
 <%= form_for(@checkout) do |f| %>
   <%= render "shared/error_messages", :target => @checkout %>
   
-	<%= f.hidden_field(:user_id, :value => current_user.id ) %>
+	<%= f.hidden_field(:user_id, :value => current_user.id) %>
 	<%= f.hidden_field(:completed_with, :value => nil) %>
+  <%= f.hidden_field(:congregation_id, :value => current_user.congregation_id ) %>
 
-  <p>
-    <%= f.label :territory_id %><br />
-    <%= f.select :territory_id, options_for_select(@territories) %>
-  </p>
-  <p>
-    <%= f.label :publisher_id %><br />
-    <%= f.select :publisher_id, options_for_select(@publisher_list) %>
-  </p>
-  <p>
-    <%= f.label :checked_out %><br />
-    <%= f.date_select :checked_out, :start_year => Time.now.year, :end_year => Time.now.year - 2 %>
-  </p>
+  <h2><%= f.label :territory_id %></h2>
+  <div><%= f.select :territory_id, options_for_select(@territories) %></div>
 
-  <p>
-    <%= f.label :notes %><br />
-    <%= f.text_field :notes %>
-  </p>
-  <p>
-    <%= f.submit 'Checkout Territory' %>
-  </p>
+  <h2><%= f.label :publisher_id %></h2>
+  <div><%= f.select :publisher_id, options_for_select(@publisher_list) %></div>
+
+  <h2><%= f.label :checked_out, 'Check out date' %></h2>
+  <div>
+    <%= f.date_select(:checked_out, {:start_year => Time.now.year, :end_year => Time.now.year - 2}, {class: "date_select"}) %>
+  </div>
+
+  <h2><%= f.label :notes %></h2>
+  <div class="textbox"><%= f.text_field :notes %></div>
+  <div>
+    <% if @territories[0][1].empty? %>
+      <%= f.submit 'Save', disabled: true %>
+    <% else %>
+      <%= f.submit 'Save' %>
+    <% end %>
+  </div>
 <% end %>
 </div>
-<%= link_to 'Back', checkouts_path %>

@@ -1,22 +1,24 @@
-<h1>Listing congregations</h1>
+<h1>Congregations <%= link_to '+', new_congregation_path, :class => "newPlus", :alt => "Create Congregation" %></h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Active</th>
+      <th>Actions</th>
     </tr>
   </thead>
-
   <tbody>
     <% @congregations.each do |congregation| %>
       <tr>
         <td><%= congregation.name %></td>
-        <td><%= link_to 'Show', congregation %></td>
-        <td><%= link_to 'Edit', edit_congregation_path(congregation) %></td>
-        <td><%= link_to 'Destroy', congregation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if congregation.active == "Y" %>
+          <td>Yes</td>
+          <td><%= link_to 'Show', congregation %> <%= link_to 'Edit', edit_congregation_path(congregation) %> <%= link_to 'Disable', cong_disable_path(congregation), :data => {:confirm => "Are you sure you want to disable \"#{congregation.name.titleize}?\""} %></td>
+        <% else %>
+          <td>No</td>
+          <td><%= link_to 'Show', congregation %> <%= link_to 'Edit', edit_congregation_path(congregation) %> <%= link_to 'Enable', cong_enable_path(congregation), :data => {:confirm => "Are you sure you want to enable \"#{congregation.name.titleize}?\""} %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Congregation', new_congregation_path %>
+
