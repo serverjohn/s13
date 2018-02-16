@@ -16,19 +16,18 @@
         <% @territories.each do |territory| %>
         <% tt = @territory_types.select { |tt| tt.id == territory.territory_type_id.to_i } %>
         <tr>
-            <td><%= link_to "#{territory.name}", edit_territory_path(territory) %></td>
+            <td><%= link_to "#{territory.name}", territory_path(territory) %></td>
             <td><%= tt[0].name.titleize %></td>
             <td><%= territory.description %></td>
             <td><%= image_tag("/uploads/#{territory.maps}", height: '50') %></td>
             <td><%= territory.notes %></td>
             <% if territory.active == "Y" %>
                 <td>Yes</td>
-                <td><%= link_to 'Show', territory %> <%= link_to 'Edit', edit_territory_path(territory) %> <%= link_to 'Disable', ts_disable_path(territory), :data => {:confirm => "Are you sure you want to disable \"#{territory.name.titleize}?\""} %></td>
+                <td><%= link_to 'Edit', edit_territory_path(territory) %> <%= link_to 'Disable', ts_disable_path(territory), :data => {:confirm => "Are you sure you want to disable \"#{territory.name.titleize}?\""} %></td>
             <% else %>
                 <td>No</td>
-                <td><%= link_to 'Show', territory %> <%= link_to 'Edit', edit_territory_path(territory) %> <%= link_to 'Enable', ts_enable_path(territory), :data => {:confirm => "Are you sure you want to enable \"#{territory.name.titleize}?\""} %></td>
+                <td><%= link_to 'Edit', edit_territory_path(territory) %> <%= link_to 'Enable', ts_enable_path(territory), :data => {:confirm => "Are you sure you want to enable \"#{territory.name.titleize}?\""} %></td>
             <% end %>
-            
         </tr>
         <% end %>       
     </tbody>

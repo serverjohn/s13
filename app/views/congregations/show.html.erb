@@ -1,8 +1,8 @@
 <h1>Congregation</h1>
-
+ 
 <div class="form">
   <h2>Name</h2>
-  <div><%= @congregation.name %></div>
+  <div class="show_field"><%= @congregation.name %></div>
 	<h2>Active</h2>
-	<div><% if @congregation.active == "Y" %>Yes<% else %>No<% end %></div>
+	<div class="show_field"><% if @congregation.active == "Y" %>Yes<% else %>No<% end %></div>
 </div>

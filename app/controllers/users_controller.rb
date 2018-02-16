@@ -91,6 +91,19 @@ class UsersController < ApplicationController
   end
 end
 
+  def enable
+    @user = User.find(params[:format])
+    if @user.active == "N" 
+      if @user.update(active: "Y")
+        redirect_to(users_path, :notice => "#{@user.name.titleize} was enabled.")
+      else
+        render :action => "edit"
+      end
+    else
+      redirect_to(users_path, :alert => "#{@user.name.titleize} is already enabled.")
+    end
+  end
+
   def congregations # List Congregations
     @congregations = Congregation.where(active: "Y")
     @congregation_list = []

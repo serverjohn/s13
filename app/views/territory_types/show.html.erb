@@ -1,8 +1,8 @@
 <h1>Territory Type</h1>
 <div class="form">
 	<h2>Name</h2>
-	<div><%= @territory_type.name %></div>
+	<div class="show_field"><%= @territory_type.name %></div>
 
 	<h2>Active</h2>
-	<div><% if @territory_type.active == "Y" %>Yes<% else %>No<% end %></div>
+	<div class="show_field"><% if @territory_type.active == "Y" %>Yes<% else %>No<% end %></div>
 </div>

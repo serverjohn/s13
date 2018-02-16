@@ -192,7 +192,7 @@ CSS Table of Contents
 			margin: 1.5em 0 0 0;
 		}
 
-		input[type=text] {
+		input[type=text], input[type=password] {
 			border-radius: .3em;
 			padding: .12em;
 			border: .12em solid grey;
@@ -207,6 +207,26 @@ CSS Table of Contents
 		.form {
 			margin: 0 auto;
 			width:50%;
+		}
+
+		.form img {
+			border-radius: .3em;
+			padding: .12em;
+			border: .12em solid grey;
+			width: 98.35%;
+		}
+
+		.show_field {
+			padding: .24em .5em;
+			background-color: #f2f2f2;
+		}
+
+		.show_map_image {
+			margin-top: 1em;
+		}
+
+		.choose_file {
+			margin-top: 1em;
 		}
 
 		.congregation_name_outer {

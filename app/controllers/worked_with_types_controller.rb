@@ -77,4 +77,16 @@ class WorkedWithTypesController < ApplicationController
     end
   end
 
+  def enable
+    @worked_with_type = WorkedWithType.find(params[:format])
+    if @worked_with_type.active == "N" 
+      if @worked_with_type.update(active: "Y")
+        redirect_to(worked_with_types_path, :notice => "#{@worked_with_type.name.titleize} was enabled.")
+      else
+        render :action => "edit"
+      end
+    else
+      redirect_to(worked_with_types_path, :alert => "#{@worked_with_type.name.titleize} is already enabled.")
+    end
+  end
 end

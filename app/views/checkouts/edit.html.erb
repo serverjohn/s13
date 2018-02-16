@@ -13,7 +13,7 @@
 
   <h2><%= f.label :checked_out, "Check out date"  %></h2>
   <div>
-    <%= f.date_select(:checked_out, {:start_year => Time.now.year, :end_year => Time.now.year - 2, :disabled => true}, {class: "date_select"}) %>
+    <%= f.date_select(:checked_out, { :disabled => true}, {class: "date_select"}) %>
   </div>
   
 

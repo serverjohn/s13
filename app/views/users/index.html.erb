@@ -1,32 +1,31 @@
 <h1>Users <%= link_to '+', new_user_path, :class => "newPlus", :alt => "New User" %></h1>
 
 <table>
-  <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Email</th>
-    <th>Phone Number</th>
-    <th>Text Message?</th>
-    <th>Cell Carrier</th>
-    <th>Notes</th>
-    <th>Role</th>
-    <th>Active</th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
-    <td><%= user.email %></td>
-    <td><%= user.phone_number %></td>
-	<td><%= user.text_message %></td>
-	<td><%= user.cell_carrier %></td>
-	<td><%= user.notes %></td>
-    <td><%= user.role %></td>
-    <td><% if user.active == "Y" %>Yes<% else %>No<% end %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Disable', ur_disable_path(user), :data => {:confirm => "Are you sure you want to disable #{user.first_name.titleize}?"} %></td>
-  </tr>
-<% end %>
+    <thead>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Active</th>
+        <th>Actions</th>
+      </tr>  
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.first_name, user %></td>
+        <td><%= link_to user.last_name, user %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <% if user.active == "Y" %>
+            <td>Yes</td>
+            <td><%= link_to 'Edit', edit_user_path(user) %> <%= link_to 'Disable', ur_disable_path(user), :data => {:confirm => "Are you sure you want to disable \"#{user.first_name.titleize} #{user.last_name.titleize}?\""} %></td>
+        <% else %>
+            <td>No</td>
+            <td><%= link_to 'Edit', edit_user_path(user) %> <%= link_to 'Enable', ur_enable_path(user), :data => {:confirm => "Are you sure you want to enable \"#{user.first_name.titleize} #{user.last_name.titleize}?\""} %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
 </table>

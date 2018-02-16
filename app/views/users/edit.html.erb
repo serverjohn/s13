@@ -1,57 +1,58 @@
 <h1>Edit User</h1>
 
+<div class="form">
 <%= form_for(@user) do |f| %>
   <%= render "shared/error_messages", :target => @user %>
-  <p>
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </p>
-  <p>
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number %>
-  </p>
-  <p>
-    <%= f.label :text_message %><br />
-    <%= f.text_field :text_message %>
-  </p>
-  <p>
-    <%= f.label :cell_carrier %><br />
-    <%= f.text_field :cell_carrier %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
-  </p>
-  <p>
-    <%= f.label :role, "User Role" %><br />
-    <%= f.select :role, options_for_select(['admin', 'tservant', 'checkout']) %>
-  </p>
-  <p>
-  <%= f.label :active %><br>
-  <%= f.radio_button :active, 'Y', :checked => true %> 
-  <%= label :active_y, 'Yes' %>
-  <%= f.radio_button :active, 'N' %>
-  <%= label :contactmethod_n, 'No' %>
-  </p>
-  <p>
-    <%= f.label :congregation_id %><br />
-    <%= f.text_field :congregation_id %>
-  </p> 	
-  <p>
-    <%= f.label :notes %><br />
-    <%= f.text_field :notes %>
-  </p>
-    <%= f.submit 'Update' %>
-  </p>
+  <h2><%= f.label :first_name %></h2>
+  <div><%= f.text_field :first_name %></div>
+  
+  <h2><%= f.label :last_name %></h2>
+  <div><%= f.text_field :last_name %></div>
+  
+  
+  <h2><%= f.label :email %></h2>
+  <div><%= f.text_field :email %></div>
+  
+  
+  <h2><%= f.label :phone_number %></h2>
+  <div><%= f.text_field :phone_number %></div>
+  
+  
+  <h2><%= f.label :text_message %></h2>
+  <div><%= f.text_field :text_message %></div>
+  
+  
+  <h2><%= f.label :cell_carrier %></h2>
+  <div><%= f.text_field :cell_carrier %></div>
+  
+  
+  <h2><%= f.label :password %></h2>
+  <div><%= f.text_field :password %></div>
+  
+  
+  <h2><%= f.label :role, "User Role" %></h2>
+  <div><%= f.select :role, options_for_select(['admin', 'tservant', 'checkout']) %></div>
+  
+  
+  <h2><%= f.label :active %></h2>
+  <div>
+    <%= f.radio_button :active, 'Y', :checked => true %> 
+    <%= label :active, 'Yes' %>
+  </div>
+  <div> 
+    <%= f.radio_button :active, 'N' %>
+    <%= label :active, 'No' %>
+  </div>
+  
+  
+  <h2><%= f.label :congregation_id %></h2>
+  <div><%= f.text_field :congregation_id %></div>
+   	
+  
+  <h2><%= f.label :notes %></h2>
+  <div><%= f.text_field :notes %></div>
+  
+    <%= f.submit 'Save' %>
+  
 <% end %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+</div>

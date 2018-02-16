@@ -1,39 +1,37 @@
-<h1>Edit Territory: <%= @territory.name %></h1>
+<h1>Edit Territory</h1>
 
-<%= form_for(@territory) do |f| %>
-  <%= render "shared/error_messages", :target => @territory %>
-  <p><%= @territory.congregation_id %></p>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :territory_type_id, "Territory Type:" %><br>
-    <%= f.select :territory_type_id, options_for_select(territory_types), :selected => :territory_type_id %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :maps %><br />
-    <%= f.text_field :maps %>
-  </p>
-  <p>
-    <%= f.label :notes %><br />
-    <%= f.text_field :notes %>
-  </p>
-  <p>
-  <%= f.label :active %><br>
-  <%= f.radio_button :active, 'Y', :checked => true %> 
-  <%= label :active_y, 'Yes' %>
-  <%= f.radio_button :active, 'N' %>
-  <%= label :contactmethod_n, 'No' %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+<div class="form">
+  <%= form_for(@territory) do |f| %>
+    <%= render "shared/error_messages", :target => @territory %>
+    
+    <h2><%= f.label :name %></h2>
+    <div><%= f.text_field :name %></div>
+    
+    <h2><%= f.label :territory_type_id, "Territory Type:" %></h2>
+    <div><%= f.select :territory_type_id, @territory_types %></div>
+    
+    <h2><%= f.label :description %></h2>
+    <div><%= f.text_field :description %></div>
 
-<%= link_to 'Show', @territory %> |
-<%= link_to 'Back', territories_path %>
+    <h2><%= f.label :maps, "Map" %></h2>
+    <% if @territory.maps %>
+      <%= image_tag("/uploads/#{@territory.maps}", width: '100%') %>
+    <% end %>
+    <div><%= f.file_field :maps, class: "choose_file" %></div>
+    
+    <h2><%= f.label :notes %></h2>
+    <div><%= f.text_field :notes %></div>
+    
+    <h2><%= f.label :active %></h2>
+    <div>
+      <%= f.radio_button :active, 'Y' %> 
+      <%= label :active, 'Yes' %>
+    </div>
+    <div>
+      <%= f.radio_button :active, 'N' %>
+      <%= label :active, 'No' %>
+    </div>
+
+    <%= f.submit 'Save' %>
+  <% end %>
+</div>

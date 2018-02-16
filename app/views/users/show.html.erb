@@ -1,57 +1,64 @@
-<p>
-  <b>Congregation:</b>
-  <%= @user.congregation.name %>
-</p>
-<p>
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
+<h1>User</h1>
 
-<p>
-  <b>Last name:</b>
-  <%= @user.last_name %>
-</p>
+<div class="form">
+<h2>Congregation</h2>
+<div class="show_field"><%= @user.congregation.name %></div>
+<h2>Name</h2>
+<div class="show_field"><%= @user.first_name %> <%= @user.last_name %></div>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-<p>
-  <b>Phone Number:</b>
-  <%= @user.phone_number %>
-</p>
-<p>
-  <b>Text Message?:</b>
-  <%= @user.text_message %>
-</p>
-<p>
-  <b>Cell Carrier:</b>
-  <%= @user.cell_carrier %>
-</p>
-<p>
-  <b>Active:</b>
-  <% if @user.active == "Y" %>Yes<% else %>No<% end %>
-</p>
-<p>
-  <b>Notes:</b>
-  <%= @user.notes %>
-</p>
+<h2>Email</h2>
+<div class="show_field"><%= @user.email %></div>
 
-<p>
-  <b>Territories Checked Out: </b>
-</p>
+<% if @user.phone_number.blank? %> 
+	<h2>Phone Number</h2>
+	<div class="show_field">&nbsp;</div>
+<% else %>
+	<h2>Phone Number</h2>
+	<div class="show_field"><%= @user.phone_number %></div>
+<% end %>
+
+<% if @user.text_message.blank? %>
+	<h2>Text Messages</h2>
+	<div class="show_field">&nbsp;</div>
+<% else %>
+	<h2>Recieve Text Messages</h2>
+	<div class="show_field"><%= @user.text_message %></div>
+<% end %>
+
+<% if @user.cell_carrier.blank? %>
+	<h2>Cell Carrier</h2>
+	<div class="show_field">&nbsp;</div>
+<% else %>
+	<h2>Cell Carrier</h2>
+	<div class="show_field"><%= @user.cell_carrier %></div>
+<% end %>
+
+<h2>Active</h2>
+<div class="show_field"><% if @user.active == "Y" %>Yes<% else %>No<% end %></div>
+
+<% if current_user.role == "admin" %>
+	<% if @user.notes.blank? %>
+		<h2>Notes</h2>
+		<div class="show_field">&nbsp;</div>
+	<% else %>
+		<h2>Notes</h2>
+		<div class="show_field"><%= @user.notes %></div>
+	<% end %>
+<% end %>
+
+</div>
+
+<h2>Territories Checked Out</h2>
+
 <table>
-<tr>
-	<th>
-	<b>Territory</b>
-	</th>
-	<th>
-	<b>Checked Out</b>
-	</th>
-	<th>
-	<b>Age</b>
-	</th>
-</tr>
+	<thead>
+		<tr>
+			<th>Territory</th>
+			<th>Checked Out</th>
+			<th>Age</th>
+		</tr>		
+	</thead>
+	<tbody>
 	<% if @territories_checked_out.empty? %>
 		<tr>
 			<td>None</td>
@@ -67,34 +74,27 @@
 			</tr>
   		<% end %> 
   	<% end %> 
+  </tbody>
 </table>
 
-<p>
-  <b>History:</b>
-</p>
+<h2>History</h2>
+
 <table>
+	<thead>
 	<% if @user_history.empty? %>
 		<tr>
 			<th colspan="5">None</th>
 		</tr>		
 	<% else %>	
 		<tr>
-			<th>
-			<b>Territory</b>
-			</th>
-			<th>
-			<b>Checked Out</b>
-			</th>
-			<th>
-			<b>Checked In</b>
-			</th>
-			<th>
-			<b>Age</b>
-			</th>
-			<th>
-			<b>Worked With</b>
-			</th>
+			<th>Territory</th>
+			<th>Checked Out</th>
+			<th>Checked In</th>
+			<th>Age</th>
+			<th>Worked With</th>
 		</tr>
+	</thead>
+	<tbody>
 		<% @user_history.each do |key, value| %>
 			<tr>
 				<td><%= value[:name] %></td>
@@ -105,7 +105,5 @@
 			</tr>
 	  	<% end %>
   	<% end %>
+  </tbody>
 </table>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

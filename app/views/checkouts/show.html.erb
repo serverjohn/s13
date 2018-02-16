@@ -1,41 +1,51 @@
-<p>
-  <b>User:</b>
-  <%= @checkout.user.first_name %> <%=h @checkout.user.last_name %>
-</p>
+<h1>Check out</h1>
 
-<p>
-  <b>Terriory:</b>
-  <%= @checkout.territory.name %>
-</p>
+<div class="form">
+  <h2>User</h2>
+  <div class="show_field"><%= @checkout.user.first_name %> <%=h @checkout.user.last_name %></div>
 
-<p>
-  <b>Publisher:</b>
-  <%= @publisher.first_name %> <%= @publisher.last_name %>
-</p>
+  <h2>Terriory</h2>
+  <div class="show_field"><%= @checkout.territory.name %></div>
 
-<p>
-  <b>Checked out:</b>
-  <%= @checkout.checked_out.strftime("%m-%d-%Y") %>
-</p>
+  <h2>Publisher</h2>
+  <div class="show_field"><%= @publisher.first_name %> <%= @publisher.last_name %></div>
 
-<p>
-  <b>Checked in:</b>
-  <%= unless @checkout.checked_in.nil? then @checkout.checked_in.strftime("%m-%d-%Y") end %>
-</p>
-<p>
-  <strong>Checked in by:</strong>
-  <%= unless @checkout.checked_in.nil? then User.find(@checkout.checkin_user_id).name_first_last end %>
-</p>
-<p>
-  <b>Completed with:</b>
-  <%= unless @checkout.worked_with_type.nil? then @checkout.worked_with_type.name end %>
-</p>
+  <h2>Check out date</h2>
+  <div class="show_field"><%= @checkout.checked_out.strftime("%m-%d-%Y") %></div>
 
-<p>
-  <b>Notes:</b>
-  <%= @checkout.notes %>
-</p>
+  <h2>Check in date</h2>
+  <div class="show_field">
+    <% if @checkout.checked_in.blank? %>
+      &nbsp;
+    <% else %>
+      <%= @checkout.checked_in.strftime("%m-%d-%Y") %>
+    <% end %>
+  </div>
 
+  <h2>Checked in by</h2>
+  <div class="show_field">
+    <% if @checkout.checkin_user_id.blank? %>
+      &nbsp;
+    <% else %>
+      <%= User.find(@checkout.checkin_user_id).name_first_last %>
+    <% end %>
+  </div>
 
-<%= link_to 'Edit', edit_checkout_path(@checkout) %> |
-<%= link_to 'Back', checkouts_path %>
+  <h2>Completed with</h2>
+  <div class="show_field">
+    <% if @checkout.worked_with_type.blank? %>  
+      &nbsp;
+    <% else %>
+     <%= @checkout.worked_with_type.name %>
+    <% end %>
+  </div>
+
+  <h2>Notes</h2>
+  <div class="show_field">
+    <% if @checkout.notes.blank? %>
+      &nbsp;
+    <% else %>
+      <%= @checkout.notes %>
+    <% end %>
+  </div> 
+</div>

@@ -40,6 +40,7 @@ class TerritoriesController < ApplicationController
   # Edit territory
   def edit
     @territory = Territory.find(params[:id])
+    @territory_types = territory_types
   end
 
   # Create territories
@@ -105,10 +106,10 @@ class TerritoriesController < ApplicationController
   # Gather Territory Type names and return them.
   def territory_types 
     territory_types = []
-    territory_types_tmp = TerritoryType.where(active: "Y")
+    territory_types_tmp = TerritoryType.where(active: "Y", congregation_id: "#{current_user.congregation_id}")
     
     territory_types_tmp.each do |tt|
-      territory_types << [tt.name.titleize,tt.id]
+      territory_types << ["#{tt.name.titleize}", tt.id]
     end
     
     return territory_types

@@ -1,12 +1,8 @@
-<h1>Worked With Type:</h1>
-<p>
-  <b>Name:</b>
-  <%= @worked_with_type.name %>
-</p>
+<h1>Worked With Type</h1>
+<div class="form">
+  <h2>Name</h2>
+  <div class="show_field"><%= @worked_with_type.name %></div>
 
-<p>
-  <b>Active:</b>
-  <% if @worked_with_type.active == "Y" %>Yes<% else %>No<% end %>
-</p>
-<%= link_to 'Edit', edit_worked_with_type_path(@worked_with_type) %> |
-<%= link_to 'Back', worked_with_types_path %>
+  <h2>Active</h2>
+  <div class="show_field"><% if @worked_with_type.active == "Y" %>Yes<% else %>No<% end %></div>
+</div>

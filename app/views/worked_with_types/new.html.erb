@@ -1,22 +1,12 @@
 <h1>New Worked With Type</h1>
+  <div class="form">
+  <%= form_for(@worked_with_type) do |f| %>
+    <%= render "shared/error_messages", :target => @worked_with_type %>
 
-<%= form_for(@worked_with_type) do |f| %>
-  <%= render "shared/error_messages", :target => @worked_with_type %>
+    <h2><%= f.label :name %></h2>
+    <div><%= f.text_field :name %></div>
+    <%= f.hidden_field :active, :value => "Y"%>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-  <%= f.label :active %><br>
-  <%= f.radio_button :active, 'Y', :checked => true %> 
-  <%= label :active_y, 'Yes' %>
-  <%= f.radio_button :active, 'N' %>
-  <%= label :contactmethod_n, 'No' %>
-  </p>
-  <p>
     <%= f.submit 'Create' %>
-  </p>
-<% end %>
-
-<%= link_to 'Back', worked_with_types_path %>
+  <% end %>
+</div>

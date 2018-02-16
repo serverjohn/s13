@@ -1,18 +1,24 @@
 <h1>Worked with Types <%= link_to '+', new_worked_with_type_path, :class => "newPlus", :alt => "Worked with Type" %></h1>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Active</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Active</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
 
 <% @worked_with_types.each do |worked_with_type| %>
   <tr>
-    <td><%= worked_with_type.name %></td>
-    <td><% if worked_with_type.active == "Y" %>Yes<% else %>No<% end %></td>
-    <td><%= link_to 'Show', worked_with_type %></td>
-    <td><%= link_to 'Edit', edit_worked_with_type_path(worked_with_type) %></td>
-    <td><%= link_to 'Disable', ww_disable_path(worked_with_type), :data => {:confirm => "Are you sure you want to disable \"#{worked_with_type.name.titleize}?\""} %></td>
+    <td><%= link_to worked_with_type.name, worked_with_type %></td>
+    <% if worked_with_type.active == "Y" %>
+        <td>Yes</td>
+        <td><%= link_to 'Edit', edit_worked_with_type_path(worked_with_type) %> <%= link_to 'Disable', ww_disable_path(worked_with_type), :data => {:confirm => "Are you sure you want to disable \"#{worked_with_type.name.titleize}?\""} %></td>
+    <% else %>
+        <td>No</td>
+        <td><%= link_to 'Edit', edit_worked_with_type_path(worked_with_type) %> <%= link_to 'Enable', ww_enable_path(worked_with_type), :data => {:confirm => "Are you sure you want to enable \"#{worked_with_type.name.titleize}?\""} %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

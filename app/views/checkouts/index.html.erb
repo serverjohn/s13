@@ -7,7 +7,7 @@
             <th scope="col">Checked out</th>
             <th scope="col">Checked in</th>
             <th scope="col">Assigned By</th>
-            <th scope="col">Action</th>
+            <th scope="col">Actions</th>
         </tr>  
     </thead>
     <tbody>
@@ -18,7 +18,7 @@
         <td><%= checkout.checked_out.strftime("%m-%d-%Y") %></td>
         <td><%= unless checkout.checked_in.nil? then checkout.checked_in.strftime("%m-%d-%Y") end %></td>
         <td><%= checkout.user.name_first_last %></td>
-        <td><%= link_to 'Show', checkout %>, <%= link_to 'Edit', edit_checkout_path(checkout) %></td>
+        <td><%= link_to 'Show', checkout %> <%= link_to 'Edit', edit_checkout_path(checkout) %></td>
       </tr>
     <% end %>
     </tbody>
