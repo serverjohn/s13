@@ -28,7 +28,6 @@ S13::Application.routes.draw do
   resources :users
   resources :territories
   resources :checkouts
-  resources :publishers
   resources :territory_types
   resources :settings
   resources :worked_with_types
