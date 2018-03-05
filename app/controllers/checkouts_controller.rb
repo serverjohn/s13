@@ -8,12 +8,8 @@ class CheckoutsController < ApplicationController
   end
  
   def index
-    ## Not Needed ## @worked_with_types = WorkedWithType.where(active: "Y") # All active worked with types
-    ## Not Needed ## @territories = territories # Method for listing territories oldest first
-    ## Not Needed ## @publishers = publishers # Method for listing publishers in alphabetical order
-
     # Check Outs List
-    @checkouts = Checkout.where(congregation_id: "#{current_user.congregation_id}")
+    @checkouts = Checkout.where(congregation_id: "#{current_user.congregation_id}").paginate(:page => params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @checkouts }
@@ -116,7 +112,7 @@ class CheckoutsController < ApplicationController
     # Gather Checkouts that are currently checked out and remove them from checked_in.
     check_in.each do |item|
       checked_in.reject! {|ci| ci.territory_id == item.territory_id } 
-      territories.reject! {|t| t.id == item.territory_id}
+      territories.to_a.reject! {|t| t.id == item.territory_id}
     end
 
     # create array to hold territories.
@@ -127,10 +123,10 @@ class CheckoutsController < ApplicationController
     checked_in.each do |ci|
       territory = Territory.find(ci.territory_id)
       @territories << ["#{ci.checked_in.strftime("%m/%d/%Y")}, #{territory.name}", "#{ci.territory_id}"]
-      territories.reject! {|item| item.id == ci.territory_id}
+      territories.to_a.reject! {|item| item.id == ci.territory_id}
     end
 
-    territories.sort_by! do |item|
+    territories.to_a.sort_by! do |item|
       item.name
     end
     
@@ -195,7 +191,7 @@ class CheckoutsController < ApplicationController
 
   def check_in
     # Gather checkouts not checked in.
-    @check_in = Checkout.order("checked_out ASC").where("checked_in IS NULL AND congregation_id = #{current_user.congregation_id}")
+    @check_in = Checkout.order("checked_out ASC").where("checked_in IS NULL AND congregation_id = #{current_user.congregation_id}").paginate(:page => params[:page])
   end
 
 end

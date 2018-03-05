@@ -17,7 +17,13 @@
   <% end %>
 
   <h2>Notes</h2>
-  <div class="show_field"><%= @territory.notes %></div>
+  <div class="show_field">
+      <% if @territory.notes.blank? %>  
+      &nbsp;
+    <% else %>
+     <%= @territory.notes %>
+    <% end %>
+  </div>
 
   <h2>Active</h2>
   <div class="show_field"><% if @territory.active == "Y" %>Yes<% else %>No<% end %></div>

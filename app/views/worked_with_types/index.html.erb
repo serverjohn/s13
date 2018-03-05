@@ -1,5 +1,10 @@
 <h1>Worked with Types <%= link_to '+', new_worked_with_type_path, :class => "newPlus", :alt => "Worked with Type" %></h1>
-
+<div class="digg_pagination">
+    <%= will_paginate @users %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @users %>
+</div>
 <table>
   <thead>
     <tr>
@@ -22,3 +27,9 @@
   </tr>
 <% end %>
 </table>
+<div class="digg_pagination">
+    <%= will_paginate @users %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @users %>
+</div>

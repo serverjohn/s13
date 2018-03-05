@@ -8,7 +8,7 @@ class TerritoryTypesController < ApplicationController
   # GET /territory_types
   # GET /territory_types.xml
   def index
-    @territory_type = TerritoryType.where(congregation_id: "#{current_user.congregation_id}" )
+    @territory_types = TerritoryType.where(congregation_id: "#{current_user.congregation_id}" ).paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

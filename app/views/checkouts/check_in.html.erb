@@ -1,5 +1,12 @@
 <h1>Check in</h1>
 
+<div class="digg_pagination">
+    <%= will_paginate @check_in %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @check_in %><% if @check_in.count > 1 %>s<% end %>
+</div>
+
 <table>
   <thead>
     <tr> 
@@ -24,3 +31,10 @@
   <% end %>
   </tbody>
 </table>
+
+<div class="digg_pagination">
+    <%= will_paginate @check_in %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @check_in %><% if @check_in.count > 1 %>s<% end %>
+</div>

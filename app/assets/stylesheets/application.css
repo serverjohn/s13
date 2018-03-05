@@ -88,6 +88,49 @@ CSS Table of Contents
  }
 .clearFix { clear: both; }
 
+.digg_pagination {
+  background: white;
+  cursor: default;
+  margin-bottom: 1em;
+  float: right;
+  /* self-clearing method: */ }
+  .digg_pagination a, .digg_pagination span, .digg_pagination em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+    margin-right: 3px; }
+  .digg_pagination .disabled {
+    color: #999999;
+    border: 2px solid #dddddd; }
+  .digg_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background: #2B478F;
+    color: white;
+    border: 2px solid #2B478F; }
+  .digg_pagination a {
+    text-decoration: none;
+    color: #2B478F;
+    border: 2px solid #2B478F; }
+    .digg_pagination a:hover, .digg_pagination a:focus {
+      color: #000033;
+      border-color: #000033; }
+  .page_info {
+    color: black;
+    float: left;
+    margin-bottom: 1em;
+    }
+  .digg_pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .digg_pagination {
+    height: 1%; }
+  *:first-child + html .digg_pagination {
+    overflow: hidden; }
+
 /* Mobile Phones */
 	@media only screen and (max-width: 767px) {
 		a:active {text-decoration:underline;}
@@ -242,7 +285,7 @@ CSS Table of Contents
 		}
 
 
-		table {width: 100%;border-collapse: collapse;}
+		table {width: 100%;border-collapse: collapse; margin-bottom: 1em;}
 		tr:nth-child(even){background-color: #f2f2f2;} 
 		tr:hover {background-color: #ddd;}
 		th, td {

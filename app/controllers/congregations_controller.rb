@@ -2,7 +2,7 @@ class CongregationsController < ApplicationController
   before_action :set_congregation, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
   def index
-    @congregations = Congregation.all
+    @congregations = Congregation.all.paginate(:page => params[:page])
   end
 
   def show

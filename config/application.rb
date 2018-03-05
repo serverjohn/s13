@@ -45,5 +45,6 @@ module S13
     config.assets.prefix = '/assets'
     config.filter_parameters += [:password, :password_confirmation]
     config.assets.precompile += %w( session.css )
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

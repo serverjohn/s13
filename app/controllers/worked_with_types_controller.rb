@@ -6,7 +6,7 @@ class WorkedWithTypesController < ApplicationController
   end
   
   def index
-    @worked_with_types = WorkedWithType.all
+    @worked_with_types = WorkedWithType.where(congregation_id: "#{current_user.congregation_id}" ).paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

@@ -2,4 +2,35 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      checkout:
+        zero:  checkouts
+        one:   checkout
+        few:   checkouts
+        other: checkouts
+      congregation:
+        zero:  congregations
+        one:   congregation
+        few:   congregations
+        other: congregations
+      territory:
+        zero:  territories
+        one:   territory
+        few:   territories
+        other: territories
+      territory_type:
+        zero:  territory types
+        one:   territory type
+        few:   territory types
+        other: territory types
+      user:
+        zero:  lusers
+        one:   user
+        few:   users
+        other: users
+      worked_with_type:
+        zero:  worked with types
+        one:   worked with type
+        few:   worked with types
+        other: worked with types

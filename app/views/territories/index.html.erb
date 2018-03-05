@@ -1,5 +1,10 @@
 <h1>Territories <%= link_to '+', new_territory_path, :class => "newPlus", :alt => "New Territory" %></h1>
-
+<div class="digg_pagination">
+    <%= will_paginate @territories %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @territories %>
+</div>
 <table>
     <thead>
         <tr>
@@ -32,3 +37,9 @@
         <% end %>       
     </tbody>
 </table>
+<div class="digg_pagination">
+    <%= will_paginate @territories %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @territories %>
+</div>

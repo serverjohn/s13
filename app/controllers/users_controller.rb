@@ -5,6 +5,15 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation, :role, :first_name, :last_name, :active, :phone_number, :notes, :text_message, :cell_carrier, :congregation_id)
   end
 
+  # List territories
+  def index 
+    @users = User.where(congregation_id: "#{current_user.congregation_id}" ).paginate(:page => params[:page])
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @territories }
+    end
+  end
+
   def new
     @user = User.new
     @congregations = congregations

@@ -1,5 +1,10 @@
 <h1>Territory Types <%= link_to '+', new_territory_type_path, :class => "newPlus", :alt => "New Territory Type" %></h1>
-
+<div class="digg_pagination">
+    <%= will_paginate @territory_types %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @territory_types %>
+</div>
 <table>
   <thead>
     <tr>
@@ -9,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-  <% @territory_type.each do |territory_type| %>
+  <% @territory_types.each do |territory_type| %>
     <tr>
       <td><%= link_to territory_type.name.titleize, territory_type %></td>
       <% if territory_type.active == "Y" %>
@@ -23,3 +28,9 @@
   <% end %>
   </tbody>
 </table>
+<div class="digg_pagination">
+    <%= will_paginate @territory_types %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @territory_types %>
+</div>

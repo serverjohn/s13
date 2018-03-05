@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   end
   ###
   
+  WillPaginate.per_page = 10
+
   include Authentication
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details

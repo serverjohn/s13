@@ -1,4 +1,12 @@
 <h1>Check Outs</h1>
+
+<div class="digg_pagination">
+    <%= will_paginate @checkouts %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @checkouts %>
+</div>
+
 <table>
     <thead>
         <tr>
@@ -23,3 +31,9 @@
     <% end %>
     </tbody>
 </table>
+<div class="digg_pagination">
+    <%= will_paginate @checkouts %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @checkouts %>
+</div>

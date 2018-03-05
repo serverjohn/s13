@@ -1,5 +1,10 @@
 <h1>Congregations <%= link_to '+', new_congregation_path, :class => "newPlus", :alt => "Create Congregation" %></h1>
-
+<div class="digg_pagination">
+    <%= will_paginate @congregations %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @congregations %>
+</div>
 <table>
   <thead>
     <tr>
@@ -23,5 +28,9 @@
     <% end %>
   </tbody>
 </table>
-
-
+<div class="digg_pagination">
+    <%= will_paginate @congregations %>
+</div>
+<div class="page_info">
+    <%= page_entries_info @congregations %>
+</div>
