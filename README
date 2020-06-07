@@ -1,6 +1,6 @@
 == Welcome to s13
 
-This is a Ruby on Rails application specifically setup to keep track of territories for congregations of Jehovah's Witnesses.
+This is a Ruby on Rails application specifically setup to keep track of territories.
 
 
 == Version 1.0
@@ -11,5 +11,4 @@ This edition is mostly ready to go. It has simple features that I hope to expand
 == Questions?
 
 Contact me through github if you have any questions.
-jeco.io
 jecosolutions.com
